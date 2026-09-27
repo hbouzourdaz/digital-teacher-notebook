@@ -1,0 +1,274 @@
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --surface: 255 255 255;
+    --surface-muted: 243 246 251;
+    --surface-raised: 255 255 255;
+    --border: 222 229 239;
+    --border-strong: 203 213 225;
+    --text: 15 23 42;
+    --text-muted: 100 116 139;
+    --brand: 32 69 131;
+    --brand-soft: 238 245 253;
+    --sidebar-from: 27 49 87;
+    --sidebar-to: 21 37 71;
+  }
+
+  html.dark {
+    --surface: 26 33 46;
+    --surface-muted: 15 20 30;
+    --surface-raised: 33 41 56;
+    --border: 47 58 78;
+    --border-strong: 66 80 104;
+    --text: 229 235 243;
+    --text-muted: 148 163 184;
+    --brand: 137 178 233;
+    --brand-soft: 30 42 64;
+    --sidebar-from: 16 22 35;
+    --sidebar-to: 11 16 26;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-[rgb(var(--surface-muted))] text-[rgb(var(--text))] font-ui antialiased;
+    font-feature-settings: 'kern' 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* خلفية ناعمة تفصل المحتوى عن الشريط الجانبي */
+  html.dark body {
+    background-image: radial-gradient(1200px 600px at 100% -10%, rgba(54, 112, 192, 0.12), transparent 60%);
+  }
+
+  * {
+    @apply border-[rgb(var(--border))];
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-bold tracking-tight;
+  }
+
+  /*
+   * أشرطة تمرير رقيقة وبلا إطار: لا تستهلك مساحة بصرية ولا تُثقل الواجهة،
+   * وتُخفى تلقائياً في ويندوز الحديث. الأولوية أن يظهر الشريط عند الحاجة فقط.
+   */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 116, 139, 0.4) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    /* الإطار الشفاف + background-clip يجعل الشريط أنحف من المسار */
+    border: 2px solid transparent;
+    background-clip: content-box;
+    background-color: rgba(100, 116, 139, 0.45);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(71, 85, 105, 0.7);
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500/60 ring-offset-1 ring-offset-[rgb(var(--surface))];
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ------------------------------- الحاويات ------------------------------ */
+  .card {
+    @apply animate-fade-in rounded-xl border bg-[rgb(var(--surface))] shadow-card;
+  }
+  .card-pad {
+    @apply p-4;
+  }
+  .card-title {
+    @apply mb-3 flex items-center gap-2 text-sm font-bold text-[rgb(var(--text))];
+  }
+  .muted {
+    @apply text-[rgb(var(--text-muted))];
+  }
+  .label {
+    @apply mb-1 block text-xs font-semibold text-[rgb(var(--text-muted))];
+  }
+
+  /* ------------------------------- الإدخال ------------------------------- */
+  .input {
+    @apply w-full rounded-lg border border-[rgb(var(--border-strong))] bg-[rgb(var(--surface))]
+      px-3 py-2 text-sm shadow-sm transition
+      placeholder:text-[rgb(var(--text-muted))]
+      hover:border-brand-300
+      focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20
+      disabled:cursor-not-allowed disabled:bg-[rgb(var(--surface-muted))] disabled:opacity-70;
+  }
+
+  /* -------------------------------- الأزرار ------------------------------ */
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium
+      transition-all duration-150 active:translate-y-[0.5px] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-brand-700 bg-gradient-to-b from-brand-600 to-brand-700 text-white shadow-sm
+      hover:from-brand-500 hover:to-brand-600 hover:shadow-md;
+  }
+  .btn-secondary {
+    @apply border-[rgb(var(--border-strong))] bg-[rgb(var(--surface))] shadow-sm
+      hover:border-brand-300 hover:bg-brand-50/70 dark:hover:bg-slate-700/40;
+  }
+  .btn-ghost {
+    @apply border-transparent bg-transparent hover:bg-[rgb(var(--surface-muted))];
+  }
+  .btn-danger {
+    @apply border-red-700 bg-gradient-to-b from-red-600 to-red-700 text-white shadow-sm hover:from-red-500 hover:to-red-600;
+  }
+  .btn-sm {
+    @apply gap-1.5 rounded-md px-2 py-1 text-xs;
+  }
+
+  /* -------------------------------- الشارات ------------------------------ */
+  .badge {
+    @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full border px-2 py-0.5 text-xs font-medium leading-5;
+  }
+
+  /* -------------------------------- الجداول ------------------------------ */
+  /*
+   * الجداول العريضة تُمرَّر أفقياً فقط عند الحاجة، وبلا شريط عمودي داخلي
+   * (صفحة التطبيق هي التي تُمرَّر عمودياً) — فتختفي أشرطة التمرير المتكررة.
+   */
+  .table-wrap {
+    @apply relative w-full overflow-x-auto overflow-y-hidden rounded-xl border bg-[rgb(var(--surface))] shadow-card;
+  }
+  /* منطقة تمرير عمودية مقصودة (سجل، محاورة، معاينة) بشريط رقيق */
+  .scroll-y {
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+  }
+  /* مهم: صنف Tailwind العام `grid` يجعل العرض grid، وهو يتقدّم على عرض الجدول
+     الافتراضي لأن محدّديته أعلى من قواعد المتصفح — لذلك نُثبّت display هنا
+     وإلا انهارت أعمدة كل الجداول في التطبيق. */
+  table.grid {
+    display: table;
+    @apply w-full border-collapse text-sm;
+  }
+  /*
+   * الجدول الأسبوعي المضغوط: 9 صفوف (صباحية 4 + مسائية 4 + فترتان) يجب أن تظهر
+   * كلها دفعة واحدة دون تمرير عمودي — خلايا مقتصدة ومسافات ضئيلة، والصفوف
+   * تمتد لملء الارتفاع المتاح بالتساوي.
+   */
+  table.schedule-compact th,
+  table.schedule-compact td {
+    @apply px-2 py-1;
+  }
+  table.schedule-compact td {
+    height: 1px; /* يحفظ تقليص الصفوف؛ المحتوى يمتد بالانزياح الطبيعي */
+  }
+  table.grid th {
+    @apply sticky top-0 z-10 whitespace-nowrap border-b bg-[rgb(var(--surface-muted))] px-2.5 py-2 text-right
+      text-xs font-bold text-[rgb(var(--text))];
+    /* خط فاصل يبقى ظاهراً أثناء التمرير (حدود الجدول المطوية تختفي مع sticky) */
+    box-shadow: inset 0 -1px 0 rgb(var(--border));
+  }
+  table.grid td {
+    @apply border-b px-2.5 py-1.5 align-middle;
+  }
+  /* فواصل خفيفة بين الأعمدة تُسهّل تتبّع السطر في الجداول العريضة */
+  table.grid th + th,
+  table.grid td + td {
+    border-inline-start-width: 1px;
+  }
+  table.grid tbody tr:nth-child(even) td {
+    @apply bg-[rgb(var(--surface-muted))]/50;
+  }
+  table.grid tbody tr:last-child td {
+    border-bottom-width: 0;
+  }
+  table.grid tbody tr:hover td {
+    @apply bg-brand-50/70 dark:bg-slate-700/40;
+  }
+  table.grid tbody tr.selected td {
+    @apply bg-brand-100/70 dark:bg-slate-700/70;
+  }
+  .cell-input {
+    @apply w-full rounded border border-transparent bg-transparent px-1.5 py-1 text-center text-sm tabular-nums
+      transition focus:border-brand-500 focus:bg-[rgb(var(--surface))] focus:ring-2 focus:ring-brand-500/20;
+  }
+  .cell-input::-webkit-outer-spin-button,
+  .cell-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* -------------------------------- البطاقات ----------------------------- */
+  .stat-card {
+    @apply card card-pad relative flex items-center justify-between gap-3 overflow-hidden;
+  }
+  .stat-card::before {
+    content: '';
+    @apply absolute inset-y-0 start-0 w-1;
+    background: var(--stat-accent, rgb(var(--brand)));
+  }
+  .stat-value {
+    @apply text-2xl font-extrabold tabular-nums tracking-tight;
+  }
+  .section-title {
+    @apply mb-2 flex items-center gap-2 text-base font-bold text-[rgb(var(--text))];
+  }
+  .section-title::before {
+    content: '';
+    @apply inline-block h-4 w-1 rounded-full bg-brand-600;
+  }
+
+  /* ------------------------------- الشريط الجانبي -------------------------- */
+  .sidebar {
+    background-image: linear-gradient(180deg, rgb(var(--sidebar-from)), rgb(var(--sidebar-to)));
+  }
+  .sidebar-link {
+    @apply relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition;
+  }
+  .sidebar-link-active {
+    @apply bg-white text-brand-800 shadow-toolbar hover:bg-white;
+  }
+  .sidebar-link-active::before {
+    content: '';
+    @apply absolute inset-y-1.5 start-0 w-1 rounded-full bg-brand-600;
+  }
+  .sidebar-link-idle {
+    @apply text-slate-200/90 hover:bg-white/10 hover:text-white;
+  }
+
+  .doc-paper {
+    @apply font-doc text-[13px] leading-relaxed;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+}

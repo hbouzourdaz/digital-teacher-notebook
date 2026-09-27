@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<title>الدفتر اليومي</title>
+<style>
+@page{ size: A4 portrait; margin: 0; }
+@font-face{font-family:'Amiri';src:url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Amiri-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:block;}
+@font-face{font-family:'Amiri';src:url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Amiri-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:block;}
+@font-face{font-family:'Tajawal';src:url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Tajawal-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:block;}
+@font-face{font-family:'Tajawal';src:url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Tajawal-Medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:block;}
+@font-face{font-family:'Tajawal';src:url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Tajawal-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:block;}
+@font-face{font-family:'Tajawal';src:url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Tajawal-ExtraBold.ttf') format('truetype');font-weight:800;font-style:normal;font-display:block;}
+:root{
+  --ink:#0f172a; --muted:#475569; --line:#94a3b8; --soft:#e2e8f0;
+  --head:#1b3157; --head-dark:#152547; --brand:#204583; --brand-soft:#eef5fd; --brand-line:#b4d1f4;
+  --zebra:#f7fafd; --ok:#047857; --ok-bg:#ecfdf5; --bad:#b91c1c; --bad-bg:#fef2f2;
+  --warn:#b45309; --warn-bg:#fffbeb; --warn-line:#fde68a;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#fff;color:var(--ink);}
+body{font-family:'Amiri','Traditional Arabic','Times New Roman',serif;font-size:12px;}
+.page{padding:12mm;position:relative;}
+
+/* — رأس الوثيقة: كتلة ملوّنة بخط فاصل سميك كما في الوثائق الرسمية — */
+.doc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8mm;
+  border:1px solid var(--brand-line);border-top:3px solid var(--brand);border-radius:2mm;
+  background:var(--brand-soft);padding:3mm 4mm;margin-bottom:3mm;}
+.logo{height:16mm;object-fit:contain;margin-bottom:1mm;}
+.head-block{font-size:1.04em;line-height:1.8;}
+.head-block .strong{font-weight:700;color:var(--head-dark);}
+.title{text-align:center;font-size:1.5em;font-weight:700;color:#fff;background:var(--head);
+  padding:1.6mm 3mm;border-radius:2mm;margin:0 0 1.2mm;letter-spacing:.2px;}
+.subtitle{text-align:center;color:var(--head);background:var(--brand-soft);border:1px solid var(--brand-line);
+  font-size:.95em;padding:1mm 2mm;border-radius:2mm;margin-bottom:3.5mm;}
+.meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4mm;font-size:.94em;margin-bottom:3mm;
+  border:1px solid var(--soft);border-inline-start:3px solid var(--brand);padding:2mm 3mm;background:#fbfcfe;border-radius:1.5mm;}
+
+/* — الجداول: ترويسة كحلية داكنة، أسطر مخططة، أعمدة رقمية وسطية — */
+table{width:100%;border-collapse:collapse;font-size:.95em;}
+th,td{border:1px solid #cbd5e1;padding:1.1mm 1.6mm;text-align:right;vertical-align:middle;}
+th{background:var(--head);color:#fff;font-weight:700;border-color:var(--head-dark);}
+thead{display:table-header-group;}
+tbody tr:nth-child(even) td{background:var(--zebra);}
+tbody tr:nth-child(even) td.num{background:#eef3f9;}
+tr{page-break-inside:avoid;}
+.num{text-align:center;font-variant-numeric:tabular-nums;width:8mm;background:#f3f6fa;color:var(--head);font-weight:700;}
+.center{text-align:center;}
+.totals td,.totals th{font-weight:700;background:var(--brand-soft);color:var(--head-dark);}
+.stages{white-space:pre-wrap;line-height:1.7;color:#334155;}
+.dayhead td{background:var(--brand-soft);font-weight:700;color:var(--head-dark);text-align:center;
+  border-top:1px solid var(--brand-line);border-bottom:1px solid var(--brand-line);}
+.section{margin:3.5mm 0 1.5mm;font-weight:700;font-size:1.08em;color:var(--head);
+  border-bottom:.8pt solid var(--soft);border-inline-start:3px solid var(--brand);padding:0 2mm 1mm;}
+.foot{margin-top:5mm;border-top:.8pt solid var(--soft);padding-top:2mm;display:flex;
+  justify-content:space-between;font-size:.85em;color:var(--muted);}
+.sign{margin-top:8mm;display:flex;justify-content:space-between;font-size:.92em;}
+.sign span{border-top:.8pt dashed var(--line);padding-top:1.5mm;min-width:50mm;text-align:center;color:var(--muted);}
+.empty{border:1px dashed var(--line);padding:6mm;text-align:center;color:var(--muted);background:#fbfcfe;border-radius:2mm;}
+.notice{font-size:.82em;color:var(--warn);background:var(--warn-bg);border:1px solid var(--warn-line);
+  border-inline-start:3px solid var(--warn);padding:1.5mm 2mm;margin-top:2.5mm;border-radius:1.5mm;}
+
+/* — تمييز النتائج: أخضر عند العتبة، أحمر دونها — */
+.pill{display:inline-block;min-width:9mm;padding:.3mm 1.4mm;border-radius:1.2mm;font-weight:700;font-variant-numeric:tabular-nums;}
+.pill-ok{background:var(--ok-bg);color:var(--ok);border:1px solid #a7f3d0;}
+.pill-bad{background:var(--bad-bg);color:var(--bad);border:1px solid #fecaca;}
+.pill-none{color:var(--muted);}
+.pill-info{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;}
+.pill-muted{background:#f1f5f9;color:#475569;border:1px solid #cbd5e1;}
+.legend{display:flex;gap:4mm;align-items:center;font-size:.8em;color:var(--muted);margin-top:2mm;}
+.legend i{display:inline-block;width:3mm;height:3mm;border-radius:50%;margin-inline-end:1mm;}
+.legend .ok{background:#10b981;} .legend .bad{background:#ef4444;}
+.bar-cell{position:relative;}
+.taskbar{display:inline-block;height:2.6mm;border-radius:1.3mm;background:linear-gradient(90deg,#10b981,#34d399);vertical-align:middle;}
+/** — أنماط الغلاف والأوراق — */
+.cover-band{background:linear-gradient(180deg,#1b3157,#204583);color:#fff;}
+.cover-band .logo{height:22mm;}
+.cover-band-top{display:flex;justify-content:space-between;align-items:flex-start;gap:6mm;}
+.cover-school{font-size:1.5em;font-weight:700;}
+.cover-year{text-align:left;font-size:.95em;opacity:.95;line-height:1.7;}
+.cover-doc{text-align:center;font-size:2em;font-weight:700;background:#fff;color:var(--head);
+  border-radius:2mm;padding:2.5mm 4mm;margin:7mm 0 3mm;}
+.cover-sub{text-align:center;font-size:1.02em;opacity:.95;}
+.cover-tag{display:flex;gap:3mm;justify-content:center;margin-top:4mm;flex-wrap:wrap;}
+.cover-tag span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:2mm;
+  padding:.8mm 3mm;font-size:.9em;}
+.cover-card{width:100%;border-collapse:collapse;font-size:.98em;}
+.cover-card th{width:42mm;background:var(--brand-soft);color:var(--head-dark);border:1px solid var(--brand-line);
+  text-align:right;padding:1.6mm 2mm;font-weight:700;}
+.cover-card td{border:1px solid var(--brand-line);padding:1.6mm 2mm;background:#fff;}
+.cover-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:3mm;margin-top:2mm;}
+.cover-fact{border:1px solid var(--soft);border-inline-start:3px solid var(--brand);border-radius:2mm;
+  padding:2mm 3mm;background:#fbfcfe;}
+.cover-fact b{display:block;font-size:1.25em;color:var(--head);font-variant-numeric:tabular-nums;}
+.cover-fact span{font-size:.85em;color:var(--muted);}
+.cover-list{margin:0;padding-inline-start:5mm;line-height:2;font-size:.96em;color:#334155;}
+.cover-list li::marker{color:var(--brand);}
+.cover-sign{display:flex;justify-content:space-between;margin-top:10mm;font-size:.92em;color:var(--muted);}
+.cover-sign span{border-top:.8pt dashed var(--line);padding-top:1.5mm;min-width:55mm;text-align:center;}
+@media print{ *{-webkit-print-color-adjust:exact;print-color-adjust:exact;} }
+
+
+.sheets{background:#fff;}
+.sheet{position:relative;width:210mm;height:296.2mm;padding:12mm;
+  display:flex;flex-direction:column;overflow:hidden;background:#fff;page-break-after:always;
+  break-after:page;}
+.sheet:last-child{page-break-after:auto;break-after:auto;}
+.sheet-cover{padding:0;}
+.sheet-top{font-size:.8em;color:#475569;border-bottom:1px solid #cbd5e1;padding-bottom:1mm;margin-bottom:2mm;
+  display:flex;justify-content:space-between;gap:4mm;}
+.sheet-cover{display:flex;flex-direction:column;}
+.sheet-cover .cover-band{background:linear-gradient(180deg,#1b3157,#204583);color:#fff;padding:12mm;}
+.sheet-cover .cover-body{flex:1 1 auto;padding:6mm 12mm 0;}
+.sheet-cover .sheet-foot{margin:0 12mm 8mm;}
+/* غلاف الورقة الأفقية: يضغط المسافات ويوزّع البطاقات على أربعة أعمدة حتى لا يُقتطع */
+.sheet-cover.is-wide .cover-band{padding:5mm 10mm 4mm;}
+.sheet-cover.is-wide .cover-band .logo{height:13mm;}
+.sheet-cover.is-wide .cover-school{font-size:1.22em;}
+.sheet-cover.is-wide .cover-doc{font-size:1.5em;margin:3.5mm 0 2mm;padding:1.4mm 3mm;}
+.sheet-cover.is-wide .cover-sub{font-size:.95em;}
+.sheet-cover.is-wide .cover-tag{margin-top:2.5mm;}
+.sheet-cover.is-wide .cover-tag span{font-size:.82em;padding:.6mm 2.4mm;}
+.sheet-cover.is-wide .cover-body{padding:4mm 10mm 0;}
+.sheet-cover.is-wide .cover-card{font-size:.9em;}
+.sheet-cover.is-wide .cover-card th,.sheet-cover.is-wide .cover-card td{padding:1mm 1.6mm;}
+.sheet-cover.is-wide .cover-facts{grid-template-columns:repeat(4,1fr);gap:2.5mm;}
+.sheet-cover.is-wide .cover-fact{padding:1.4mm 2.4mm;}
+.sheet-cover.is-wide .cover-fact b{font-size:1.1em;}
+.sheet-cover.is-wide .cover-list{columns:2;column-gap:8mm;line-height:1.8;}
+.sheet-cover.is-wide .notice{font-size:.78em;}
+.sheet-cover.is-wide .cover-sign{margin-top:5mm;}
+.sheet-body{flex:1 1 auto;min-height:0;}
+.sheet-foot{margin-top:auto;border-top:.8pt solid #cbd5e1;padding-top:1.4mm;display:flex;
+  justify-content:space-between;align-items:center;font-size:.78em;color:#475569;}
+.sheet-page{font-variant-numeric:tabular-nums;font-weight:700;color:#1b3157;}
+@media screen{
+  .sheets{padding:4mm 0;text-align:center;}
+  .sheet{margin:0 auto 5mm;box-shadow:0 1px 6px rgba(15,23,42,.18);}
+  .sheet:last-child{margin-bottom:0;}
+}
+@media print{.sheet{margin:0 !important;box-shadow:none;}}
+
+</style>
+</head>
+<body class="sheets">
+<section class="sheet sheet-cover" data-page="1"><div class="cover-band">
+    <div class="cover-band-top">
+      <div><div class="cover-school">المؤسسة</div>
+        
+        <div>الأستاذ: <strong>—</strong> — المادة: —</div>
+      </div>
+      <div class="cover-year">السنة الدراسية<div><strong>2026 - 2027</strong></div>
+        <div>تاريخ الطبع: 27 سبتمبر 2026</div></div>
+    </div>
+    <div class="cover-doc">الدفتر اليومي</div>
+    <div class="cover-sub">الأحد 27 سبتمبر 2026 →  2 أكتوبر 2026</div>
+    <div class="cover-tag"><span>الدفتر اليومي</span><span>الوثيقة: الدفتر اليومي</span><span>مقاس A4</span></div>
+  </div>
+  <div class="cover-body">
+    <table class="cover-card"><tbody>
+      <tr><th>الوثيقة</th><td>الدفتر اليومي</td></tr><tr><th>القسم</th><td>2 متوسط 1</td></tr><tr><th>الفصل</th><td>كل الفصول</td></tr><tr><th>الفترة</th><td>الأحد 27 سبتمبر 2026 →  2 أكتوبر 2026</td></tr><tr><th>السنة الدراسية</th><td>2026 - 2027</td></tr>
+    </tbody></table>
+    <div class="section">مؤشرات الوثيقة</div>
+    <div class="cover-facts">
+      <div class="cover-fact"><span>عدد الحصص</span><b>36</b></div><div class="cover-fact"><span>عدد الأيام</span><b>6</b></div><div class="cover-fact"><span>عدد الأقسام</span><b>1</b></div><div class="cover-fact"><span>الغياب المسجّل</span><b>0</b></div>
+    </div>
+    <div class="section">محتوى الوثيقة</div>
+    <ul class="cover-list"><li>كل يوم في ورقة مستقلة (يمكن طبع يوم واحد فقط)</li><li>عنوان الدرس ومراحل سيره لكل حصة</li><li>نوع الحصة والقسم والتوقيت</li><li>غياب وتأخر كل حصة من سجل الحضور</li><li>عدد الحصص والأيام والغياب في الغلاف</li></ul>
+    <div class="notice">تقرير داخلي أعدّه الأستاذ لعمله الشخصي — لا يمثّل أي جهة رسمية، وصيغ الحساب فيه يحدّدها الأستاذ.</div>
+    <div class="cover-sign"><span>إمضاء الأستاذ</span><span>إمضاء الإدارة</span></div>
+  </div><div class="sheet-foot"><span class="sheet-note"> — </span><span class="sheet-page">صفحة 1 من 7</span></div></section>
+<section class="sheet" data-page="2">
+  <div class="sheet-top"><span>المؤسسة</span><span></span></div>
+  <div class="doc-head">
+    <div class="head-block">
+      <div class="strong">المؤسسة</div>
+      
+      <div>الأستاذ: <span class="strong">—</span></div>
+      <div>المادة: —</div>
+    </div>
+    <div class="head-block" style="text-align:left">
+      
+      <div>السنة الدراسية: <span class="strong">2026 - 2027</span></div>
+      <div>تاريخ الطبع: 27 سبتمبر 2026</div>
+    </div>
+  </div>
+  <div class="title">الدفتر اليومي</div><div class="subtitle">الأحد 27 سبتمبر 2026 →  2 أكتوبر 2026</div>
+  <div class="sheet-body" data-body="2">
+    <div data-unit="0" class="meta">
+      <span>عدد الحصص: <strong>36</strong></span>
+      <span>عدد الأقسام: <strong>1</strong></span>
+      <span>الغياب المسجّل: <strong>0</strong></span>
+    </div>
+<table><thead><tr>
+      <th class="center" style="width:10mm">حصة</th>
+      <th class="center" style="width:22mm">التوقيت</th>
+      <th class="center" style="width:24mm">القسم</th>
+      <th class="center" style="width:20mm">نوع الحصة</th>
+      <th>عنوان الدرس ومراحل سيره</th>
+      <th class="center" style="width:14mm">غياب</th>
+      <th class="center" style="width:14mm">تأخر</th>
+      <th style="width:38mm">ملاحظات</th>
+    </tr></thead><tbody>
+<tr data-unit="1" class="dayhead"><td colspan="8" class="center">الأحد 27 سبتمبر 2026</td></tr>
+<tr data-unit="2">
+        <td class="num" style="width:10mm">1</td>
+        <td class="center" style="width:22mm">08:00 - 09:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 1</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="3">
+        <td class="num" style="width:10mm">2</td>
+        <td class="center" style="width:22mm">09:00 - 10:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 2</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="4">
+        <td class="num" style="width:10mm">3</td>
+        <td class="center" style="width:22mm">10:00 - 11:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 3</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="5">
+        <td class="num" style="width:10mm">4</td>
+        <td class="center" style="width:22mm">11:00 - 12:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 4</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="6">
+        <td class="num" style="width:10mm">5</td>
+        <td class="center" style="width:22mm">12:00 - 13:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 5</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="7">
+        <td class="num" style="width:10mm">6</td>
+        <td class="center" style="width:22mm">13:00 - 14:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 6</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+</tbody></table>
+  </div>
+  <div class="sheet-foot"><span class="sheet-note"> — </span><span class="sheet-page">صفحة 2 من 7</span></div>
+</section>
+<section class="sheet" data-page="3">
+  <div class="sheet-top"><span>المؤسسة</span><span></span> — الإثنين 28 سبتمبر 2026</div>
+  
+  
+  <div class="sheet-body" data-body="3">
+    <table><thead><tr>
+      <th class="center" style="width:10mm">حصة</th>
+      <th class="center" style="width:22mm">التوقيت</th>
+      <th class="center" style="width:24mm">القسم</th>
+      <th class="center" style="width:20mm">نوع الحصة</th>
+      <th>عنوان الدرس ومراحل سيره</th>
+      <th class="center" style="width:14mm">غياب</th>
+      <th class="center" style="width:14mm">تأخر</th>
+      <th style="width:38mm">ملاحظات</th>
+    </tr></thead><tbody>
+<tr data-unit="8" class="dayhead"><td colspan="8" class="center">الإثنين 28 سبتمبر 2026</td></tr>
+<tr data-unit="9">
+        <td class="num" style="width:10mm">7</td>
+        <td class="center" style="width:22mm">08:00 - 09:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 1</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="10">
+        <td class="num" style="width:10mm">8</td>
+        <td class="center" style="width:22mm">09:00 - 10:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 2</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="11">
+        <td class="num" style="width:10mm">9</td>
+        <td class="center" style="width:22mm">10:00 - 11:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 3</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="12">
+        <td class="num" style="width:10mm">10</td>
+        <td class="center" style="width:22mm">11:00 - 12:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 4</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="13">
+        <td class="num" style="width:10mm">11</td>
+        <td class="center" style="width:22mm">12:00 - 13:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 5</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="14">
+        <td class="num" style="width:10mm">12</td>
+        <td class="center" style="width:22mm">13:00 - 14:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 6</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+</tbody></table>
+  </div>
+  <div class="sheet-foot"><span class="sheet-note"> — </span><span class="sheet-page">صفحة 3 من 7</span></div>
+</section>
+<section class="sheet" data-page="4">
+  <div class="sheet-top"><span>المؤسسة</span><span></span> — الثلاثاء 29 سبتمبر 2026</div>
+  
+  
+  <div class="sheet-body" data-body="4">
+    <table><thead><tr>
+      <th class="center" style="width:10mm">حصة</th>
+      <th class="center" style="width:22mm">التوقيت</th>
+      <th class="center" style="width:24mm">القسم</th>
+      <th class="center" style="width:20mm">نوع الحصة</th>
+      <th>عنوان الدرس ومراحل سيره</th>
+      <th class="center" style="width:14mm">غياب</th>
+      <th class="center" style="width:14mm">تأخر</th>
+      <th style="width:38mm">ملاحظات</th>
+    </tr></thead><tbody>
+<tr data-unit="15" class="dayhead"><td colspan="8" class="center">الثلاثاء 29 سبتمبر 2026</td></tr>
+<tr data-unit="16">
+        <td class="num" style="width:10mm">13</td>
+        <td class="center" style="width:22mm">08:00 - 09:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 1</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="17">
+        <td class="num" style="width:10mm">14</td>
+        <td class="center" style="width:22mm">09:00 - 10:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 2</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="18">
+        <td class="num" style="width:10mm">15</td>
+        <td class="center" style="width:22mm">10:00 - 11:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 3</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="19">
+        <td class="num" style="width:10mm">16</td>
+        <td class="center" style="width:22mm">11:00 - 12:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 4</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="20">
+        <td class="num" style="width:10mm">17</td>
+        <td class="center" style="width:22mm">12:00 - 13:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 5</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="21">
+        <td class="num" style="width:10mm">18</td>
+        <td class="center" style="width:22mm">13:00 - 14:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 6</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+</tbody></table>
+  </div>
+  <div class="sheet-foot"><span class="sheet-note"> — </span><span class="sheet-page">صفحة 4 من 7</span></div>
+</section>
+<section class="sheet" data-page="5">
+  <div class="sheet-top"><span>المؤسسة</span><span></span> — الأربعاء 30 سبتمبر 2026</div>
+  
+  
+  <div class="sheet-body" data-body="5">
+    <table><thead><tr>
+      <th class="center" style="width:10mm">حصة</th>
+      <th class="center" style="width:22mm">التوقيت</th>
+      <th class="center" style="width:24mm">القسم</th>
+      <th class="center" style="width:20mm">نوع الحصة</th>
+      <th>عنوان الدرس ومراحل سيره</th>
+      <th class="center" style="width:14mm">غياب</th>
+      <th class="center" style="width:14mm">تأخر</th>
+      <th style="width:38mm">ملاحظات</th>
+    </tr></thead><tbody>
+<tr data-unit="22" class="dayhead"><td colspan="8" class="center">الأربعاء 30 سبتمبر 2026</td></tr>
+<tr data-unit="23">
+        <td class="num" style="width:10mm">19</td>
+        <td class="center" style="width:22mm">08:00 - 09:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 1</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="24">
+        <td class="num" style="width:10mm">20</td>
+        <td class="center" style="width:22mm">09:00 - 10:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 2</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="25">
+        <td class="num" style="width:10mm">21</td>
+        <td class="center" style="width:22mm">10:00 - 11:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 3</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="26">
+        <td class="num" style="width:10mm">22</td>
+        <td class="center" style="width:22mm">11:00 - 12:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 4</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="27">
+        <td class="num" style="width:10mm">23</td>
+        <td class="center" style="width:22mm">12:00 - 13:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 5</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="28">
+        <td class="num" style="width:10mm">24</td>
+        <td class="center" style="width:22mm">13:00 - 14:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 6</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+</tbody></table>
+  </div>
+  <div class="sheet-foot"><span class="sheet-note"> — </span><span class="sheet-page">صفحة 5 من 7</span></div>
+</section>
+<section class="sheet" data-page="6">
+  <div class="sheet-top"><span>المؤسسة</span><span></span> — الخميس 1 أكتوبر 2026</div>
+  
+  
+  <div class="sheet-body" data-body="6">
+    <table><thead><tr>
+      <th class="center" style="width:10mm">حصة</th>
+      <th class="center" style="width:22mm">التوقيت</th>
+      <th class="center" style="width:24mm">القسم</th>
+      <th class="center" style="width:20mm">نوع الحصة</th>
+      <th>عنوان الدرس ومراحل سيره</th>
+      <th class="center" style="width:14mm">غياب</th>
+      <th class="center" style="width:14mm">تأخر</th>
+      <th style="width:38mm">ملاحظات</th>
+    </tr></thead><tbody>
+<tr data-unit="29" class="dayhead"><td colspan="8" class="center">الخميس 1 أكتوبر 2026</td></tr>
+<tr data-unit="30">
+        <td class="num" style="width:10mm">25</td>
+        <td class="center" style="width:22mm">08:00 - 09:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 1</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="31">
+        <td class="num" style="width:10mm">26</td>
+        <td class="center" style="width:22mm">09:00 - 10:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 2</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="32">
+        <td class="num" style="width:10mm">27</td>
+        <td class="center" style="width:22mm">10:00 - 11:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 3</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="33">
+        <td class="num" style="width:10mm">28</td>
+        <td class="center" style="width:22mm">11:00 - 12:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 4</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="34">
+        <td class="num" style="width:10mm">29</td>
+        <td class="center" style="width:22mm">12:00 - 13:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 5</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="35">
+        <td class="num" style="width:10mm">30</td>
+        <td class="center" style="width:22mm">13:00 - 14:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 6</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+</tbody></table>
+  </div>
+  <div class="sheet-foot"><span class="sheet-note"> — </span><span class="sheet-page">صفحة 6 من 7</span></div>
+</section>
+<section class="sheet" data-page="7">
+  <div class="sheet-top"><span>المؤسسة</span><span></span> — 2 أكتوبر 2026</div>
+  
+  
+  <div class="sheet-body" data-body="7">
+    <table><thead><tr>
+      <th class="center" style="width:10mm">حصة</th>
+      <th class="center" style="width:22mm">التوقيت</th>
+      <th class="center" style="width:24mm">القسم</th>
+      <th class="center" style="width:20mm">نوع الحصة</th>
+      <th>عنوان الدرس ومراحل سيره</th>
+      <th class="center" style="width:14mm">غياب</th>
+      <th class="center" style="width:14mm">تأخر</th>
+      <th style="width:38mm">ملاحظات</th>
+    </tr></thead><tbody>
+<tr data-unit="36" class="dayhead"><td colspan="8" class="center"> 2 أكتوبر 2026</td></tr>
+<tr data-unit="37">
+        <td class="num" style="width:10mm">31</td>
+        <td class="center" style="width:22mm">08:00 - 09:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 1</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="38">
+        <td class="num" style="width:10mm">32</td>
+        <td class="center" style="width:22mm">09:00 - 10:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 2</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="39">
+        <td class="num" style="width:10mm">33</td>
+        <td class="center" style="width:22mm">10:00 - 11:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 3</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="40">
+        <td class="num" style="width:10mm">34</td>
+        <td class="center" style="width:22mm">11:00 - 12:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 4</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="41">
+        <td class="num" style="width:10mm">35</td>
+        <td class="center" style="width:22mm">12:00 - 13:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 5</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+<tr data-unit="42">
+        <td class="num" style="width:10mm">36</td>
+        <td class="center" style="width:22mm">13:00 - 14:00</td>
+        <td class="center" style="width:24mm">2 متوسط 1</td>
+        <td class="center" style="width:20mm">درس</td>
+        <td><div class="strong">درس رقم 6</div><div class="stages">وضعية الانطلاق • بناء التعلمات • الحصيلة</div></td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="center" style="width:14mm">—</td>
+        <td class="stages" style="width:38mm">ملاحظة تجريبية</td>
+      </tr>
+</tbody></table>
+  </div>
+  <div class="sheet-foot"><span class="sheet-note"> — </span><span class="sheet-page">صفحة 7 من 7</span></div>
+</section>
+</body>
+</html>

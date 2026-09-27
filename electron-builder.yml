@@ -1,0 +1,43 @@
+appId: dz.teacher.notebook
+productName: دفتر الأستاذ الرقمي
+copyright: Copyright © 2026
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - out/**/*
+  - resources/**/*
+  - package.json
+  - '!**/*.map'
+
+# The database, backups and attachments live in app.getPath('userData'),
+# never inside the installer package.
+asarUnpack:
+  - '**/node_modules/better-sqlite3/**'
+  - resources/**
+
+extraResources:
+  - from: resources
+    to: resources
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: ${productName}-${version}-setup.${ext}
+  icon: build/icon.ico
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: دفتر الأستاذ الرقمي
+  deleteAppDataOnUninstall: false
+
+# Never touch user data on update/uninstall
+publish: null

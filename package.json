@@ -1,0 +1,63 @@
+{
+  "name": "digital-teacher-notebook",
+  "productName": "دفتر الأستاذ الرقمي",
+  "version": "1.0.0",
+  "description": "دفتر الأستاذ الرقمي — تطبيق سطح مكتب للأستاذ في التعليم المتوسط (يعمل دون إنترنت)",
+  "main": "./out/main/index.js",
+  "author": "Digital Teacher Notebook",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "predev": "npm run fonts:sync",
+    "dev": "npm run sqlite:electron && electron-vite dev",
+    "prestart": "npm run fonts:sync",
+    "start": "npm run sqlite:electron && electron-vite preview",
+    "prebuild": "npm run fonts:sync",
+    "fonts:sync": "node scripts/sync-fonts.mjs",
+    "build": "npm run typecheck && electron-vite build",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json",
+    "test": "npm run sqlite:node && vitest run",
+    "test:watch": "npm run sqlite:node && vitest",
+    "dist": "npm run sqlite:electron && npm run build && electron-builder --win",
+    "dist:dir": "npm run sqlite:electron && npm run build && electron-builder --win --dir",
+    "rebuild": "npm run sqlite:electron",
+    "sqlite:node": "node scripts/sqlite-runtime.mjs node",
+    "sqlite:electron": "node scripts/sqlite-runtime.mjs electron",
+    "icon": "node scripts/make-icon.mjs"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "better-sqlite3": "^12.11.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.454.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.1",
+    "xlsx": "^0.18.5",
+    "zod": "^3.23.8",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.4"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true,
+    "electron@33.4.11": true,
+    "esbuild@0.21.5": true
+  }
+}

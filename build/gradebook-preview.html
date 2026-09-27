@@ -1,0 +1,2793 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8" /><title>دفتر التنقيط — معاينة التخطيط</title>
+<style>/*
+ * الخطوط محلية فقط — لا يوجد أي استدعاء لـ Google Fonts أو أي CDN.
+ * الملفات المضمّنة في: resources/fonts/
+ *   Amiri-Regular.ttf / Amiri-Bold.ttf                      → خط الوثائق والطباعة
+ *   Tajawal-Regular/Medium/Bold/ExtraBold.ttf               → خط الواجهة
+ * في حال عدم وجود الملفات يستعمل التطبيق خطوط النظام العربية تلقائياً
+ * (Traditional Arabic / Segoe UI / Tahoma) فيبقى التطبيق صالحاً للعمل.
+ */
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Amiri-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Amiri-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Tajawal-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Tajawal-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('file:///C:/Users/Hakim BOUZOURDAZ/Documents/notebook/resources/fonts/Tajawal-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+/*
+ ! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com
+ *//*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4; /* 3 */
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+  font-feature-settings: normal; /* 5 */
+  font-variation-settings: normal; /* 6 */
+  -webkit-tap-highlight-color: transparent; /* 7 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
+  font-feature-settings: normal; /* 2 */
+  font-variation-settings: normal; /* 3 */
+  font-size: 1em; /* 4 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  letter-spacing: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none;
+}
+  :root {
+    --surface: 255 255 255;
+    --surface-muted: 243 246 251;
+    --surface-raised: 255 255 255;
+    --border: 222 229 239;
+    --border-strong: 203 213 225;
+    --text: 15 23 42;
+    --text-muted: 100 116 139;
+    --brand: 32 69 131;
+    --brand-soft: 238 245 253;
+    --sidebar-from: 27 49 87;
+    --sidebar-to: 21 37 71;
+  }
+
+  html.dark {
+    --surface: 26 33 46;
+    --surface-muted: 15 20 30;
+    --surface-raised: 33 41 56;
+    --border: 47 58 78;
+    --border-strong: 66 80 104;
+    --text: 229 235 243;
+    --text-muted: 148 163 184;
+    --brand: 137 178 233;
+    --brand-soft: 30 42 64;
+    --sidebar-from: 16 22 35;
+    --sidebar-to: 11 16 26;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+  background-color: rgb(var(--surface-muted));
+  font-family: Tajawal, Segoe UI, Tahoma, Arial, sans-serif;
+  color: rgb(var(--text));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1;
+    text-rendering: optimizeLegibility;
+}
+
+  /* خلفية ناعمة تفصل المحتوى عن الشريط الجانبي */
+  html.dark body {
+    background-image: radial-gradient(1200px 600px at 100% -10%, rgba(54, 112, 192, 0.12), transparent 60%);
+  }
+
+  * {
+  border-color: rgb(var(--border));
+}
+
+  h1,
+  h2,
+  h3 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+  /*
+   * أشرطة تمرير رقيقة وبلا إطار: لا تستهلك مساحة بصرية ولا تُثقل الواجهة،
+   * وتُخفى تلقائياً في ويندوز الحديث. الأولوية أن يظهر الشريط عند الحاجة فقط.
+   */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 116, 139, 0.4) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    /* الإطار الشفاف + background-clip يجعل الشريط أنحف من المسار */
+    border: 2px solid transparent;
+    background-clip: content-box;
+    background-color: rgba(100, 116, 139, 0.45);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(71, 85, 105, 0.7);
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  :focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  --tw-ring-color: rgb(54 112 192 / 0.6);
+  --tw-ring-offset-width: 1px;
+  --tw-ring-offset-color: rgb(var(--surface));
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+.\!container {
+  width: 100% !important;
+}
+.container {
+  width: 100%;
+}
+@media (min-width: 640px) {
+
+  .\!container {
+    max-width: 640px !important;
+  }
+
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+
+  .\!container {
+    max-width: 768px !important;
+  }
+
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+
+  .\!container {
+    max-width: 1024px !important;
+  }
+
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+
+  .\!container {
+    max-width: 1280px !important;
+  }
+
+  .container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+
+  .\!container {
+    max-width: 1536px !important;
+  }
+
+  .container {
+    max-width: 1536px;
+  }
+}
+  /* ------------------------------- الحاويات ------------------------------ */
+  @keyframes fade-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+  .card {
+  animation: fade-in 180ms ease-out;
+  border-radius: 0.75rem;
+  border-width: 1px;
+  background-color: rgb(var(--surface));
+  --tw-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.06), 0 1px 3px 0 rgb(15 23 42 / 0.04);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color), 0 1px 3px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+  .card-pad {
+  padding: 1rem;
+}
+  .muted {
+  color: rgb(var(--text-muted));
+}
+  .label {
+  margin-bottom: 0.25rem;
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  color: rgb(var(--text-muted));
+}
+
+  /* ------------------------------- الإدخال ------------------------------- */
+  .input {
+  width: 100%;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-color: rgb(var(--border-strong));
+  background-color: rgb(var(--surface));
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+  .input::-moz-placeholder {
+  color: rgb(var(--text-muted));
+}
+  .input::placeholder {
+  color: rgb(var(--text-muted));
+}
+  .input:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(132 178 233 / var(--tw-border-opacity, 1));
+}
+  .input:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(54 112 192 / var(--tw-border-opacity, 1));
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  --tw-ring-color: rgb(54 112 192 / 0.2);
+}
+  .input:disabled {
+  cursor: not-allowed;
+  background-color: rgb(var(--surface-muted));
+  opacity: 0.7;
+}
+
+  /* -------------------------------- الأزرار ------------------------------ */
+  .btn {
+  display: inline-flex;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+  .btn:active {
+  --tw-translate-y: 0.5px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+  .btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+  .btn-primary {
+  --tw-border-opacity: 1;
+  border-color: rgb(32 69 131 / var(--tw-border-opacity, 1));
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+  --tw-gradient-from: #2857a1 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(40 87 161 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #204583 var(--tw-gradient-to-position);
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+  .btn-primary:hover {
+  --tw-gradient-from: #3670c0 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(54 112 192 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #2857a1 var(--tw-gradient-to-position);
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+  .btn-secondary {
+  border-color: rgb(var(--border-strong));
+  background-color: rgb(var(--surface));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+  .btn-secondary:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(132 178 233 / var(--tw-border-opacity, 1));
+  background-color: rgb(238 245 253 / 0.7);
+}
+  .btn-secondary:hover:is(.dark *) {
+  background-color: rgb(51 65 85 / 0.4);
+}
+  .btn-ghost {
+  border-color: transparent;
+  background-color: transparent;
+}
+  .btn-ghost:hover {
+  background-color: rgb(var(--surface-muted));
+}
+  .btn-danger {
+  --tw-border-opacity: 1;
+  border-color: rgb(185 28 28 / var(--tw-border-opacity, 1));
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+  --tw-gradient-from: #dc2626 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(220 38 38 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #b91c1c var(--tw-gradient-to-position);
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+  .btn-danger:hover {
+  --tw-gradient-from: #ef4444 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(239 68 68 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #dc2626 var(--tw-gradient-to-position);
+}
+  .btn-sm {
+  gap: 0.375rem;
+  border-radius: 0.375rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+  /* -------------------------------- الشارات ------------------------------ */
+  .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+  border-radius: 9999px;
+  border-width: 1px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+  /* -------------------------------- الجداول ------------------------------ */
+  /*
+   * الجداول العريضة تُمرَّر أفقياً فقط عند الحاجة، وبلا شريط عمودي داخلي
+   * (صفحة التطبيق هي التي تُمرَّر عمودياً) — فتختفي أشرطة التمرير المتكررة.
+   */
+  .table-wrap {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 0.75rem;
+  border-width: 1px;
+  background-color: rgb(var(--surface));
+  --tw-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.06), 0 1px 3px 0 rgb(15 23 42 / 0.04);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color), 0 1px 3px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+  /* منطقة تمرير عمودية مقصودة (سجل، محاورة، معاينة) بشريط رقيق */
+  .scroll-y {
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+  }
+  /* مهم: صنف Tailwind العام `grid` يجعل العرض grid، وهو يتقدّم على عرض الجدول
+     الافتراضي لأن محدّديته أعلى من قواعد المتصفح — لذلك نُثبّت display هنا
+     وإلا انهارت أعمدة كل الجداول في التطبيق. */
+  table.grid {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  table.grid th {
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  white-space: nowrap;
+  border-bottom-width: 1px;
+  background-color: rgb(var(--surface-muted));
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: right;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  color: rgb(var(--text));
+    /* خط فاصل يبقى ظاهراً أثناء التمرير (حدود الجدول المطوية تختفي مع sticky) */
+    box-shadow: inset 0 -1px 0 rgb(var(--border));
+}
+  table.grid td {
+  border-bottom-width: 1px;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  vertical-align: middle;
+}
+  /* فواصل خفيفة بين الأعمدة تُسهّل تتبّع السطر في الجداول العريضة */
+  table.grid th + th,
+  table.grid td + td {
+    border-inline-start-width: 1px;
+  }
+  table.grid tbody tr:nth-child(even) td {
+  background-color: rgb(var(--surface-muted) / 0.5);
+}
+  table.grid tbody tr:last-child td {
+    border-bottom-width: 0;
+  }
+  table.grid tbody tr:hover td {
+  background-color: rgb(238 245 253 / 0.7);
+}
+  table.grid tbody tr:hover td:is(.dark *) {
+  background-color: rgb(51 65 85 / 0.4);
+}
+  table.grid tbody tr.selected td {
+  background-color: rgb(216 232 250 / 0.7);
+}
+  table.grid tbody tr.selected td:is(.dark *) {
+  background-color: rgb(51 65 85 / 0.7);
+}
+  .cell-input {
+  width: 100%;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-color: transparent;
+  background-color: transparent;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+  .cell-input:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(54 112 192 / var(--tw-border-opacity, 1));
+  background-color: rgb(var(--surface));
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  --tw-ring-color: rgb(54 112 192 / 0.2);
+}
+  .cell-input::-webkit-outer-spin-button,
+  .cell-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* -------------------------------- البطاقات ----------------------------- */
+  @keyframes fade-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+  .stat-card {
+  animation: fade-in 180ms ease-out;
+  border-radius: 0.75rem;
+  border-width: 1px;
+  background-color: rgb(var(--surface));
+  --tw-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.06), 0 1px 3px 0 rgb(15 23 42 / 0.04);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color), 0 1px 3px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  overflow: hidden;
+}
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    inset-inline-start: 0px;
+    width: 0.25rem;
+    background: var(--stat-accent, rgb(var(--brand)));
+  }
+  .stat-value {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 800;
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+  letter-spacing: -0.025em;
+}
+  .section-title {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  color: rgb(var(--text));
+}
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    height: 1rem;
+    width: 0.25rem;
+    border-radius: 9999px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(40 87 161 / var(--tw-bg-opacity, 1));
+  }
+
+  /* ------------------------------- الشريط الجانبي -------------------------- */
+  .sidebar {
+    background-image: linear-gradient(180deg, rgb(var(--sidebar-from)), rgb(var(--sidebar-to)));
+  }
+  .sidebar-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+  .sidebar-link-active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(29 58 106 / var(--tw-text-opacity, 1));
+  --tw-shadow: 0 2px 10px -4px rgb(15 23 42 / 0.25);
+  --tw-shadow-colored: 0 2px 10px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+  .sidebar-link-active:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+  .sidebar-link-active::before {
+    content: '';
+    position: absolute;
+    top: 0.375rem;
+    bottom: 0.375rem;
+    inset-inline-start: 0px;
+    width: 0.25rem;
+    border-radius: 9999px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(40 87 161 / var(--tw-bg-opacity, 1));
+  }
+  .sidebar-link-idle {
+  color: rgb(226 232 240 / 0.9);
+}
+  .sidebar-link-idle:hover {
+  background-color: rgb(255 255 255 / 0.1);
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+.pointer-events-none {
+  pointer-events: none;
+}
+.pointer-events-auto {
+  pointer-events: auto;
+}
+.fixed {
+  position: fixed;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.sticky {
+  position: sticky;
+}
+.inset-0 {
+  inset: 0px;
+}
+.-right-\[1\.42rem\] {
+  right: -1.42rem;
+}
+.bottom-4 {
+  bottom: 1rem;
+}
+.left-4 {
+  left: 1rem;
+}
+.right-0 {
+  right: 0px;
+}
+.right-3 {
+  right: 0.75rem;
+}
+.right-\[3rem\] {
+  right: 3rem;
+}
+.top-0 {
+  top: 0px;
+}
+.top-2\.5 {
+  top: 0.625rem;
+}
+.top-4 {
+  top: 1rem;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-20 {
+  z-index: 20;
+}
+.z-30 {
+  z-index: 30;
+}
+.z-50 {
+  z-index: 50;
+}
+.z-\[60\] {
+  z-index: 60;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.mb-0 {
+  margin-bottom: 0px;
+}
+.mb-0\.5 {
+  margin-bottom: 0.125rem;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+.mr-1 {
+  margin-right: 0.25rem;
+}
+.mt-0\.5 {
+  margin-top: 0.125rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mt-5 {
+  margin-top: 1.25rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.inline {
+  display: inline;
+}
+.flex {
+  display: flex;
+}
+.table {
+  display: table;
+}
+.grid {
+  display: grid;
+}
+.hidden {
+  display: none;
+}
+.h-14 {
+  height: 3.5rem;
+}
+.h-2 {
+  height: 0.5rem;
+}
+.h-3 {
+  height: 0.75rem;
+}
+.h-3\.5 {
+  height: 0.875rem;
+}
+.h-4 {
+  height: 1rem;
+}
+.h-5 {
+  height: 1.25rem;
+}
+.h-6 {
+  height: 1.5rem;
+}
+.h-7 {
+  height: 1.75rem;
+}
+.h-8 {
+  height: 2rem;
+}
+.h-full {
+  height: 100%;
+}
+.max-h-60 {
+  max-height: 15rem;
+}
+.max-h-72 {
+  max-height: 18rem;
+}
+.max-h-\[50vh\] {
+  max-height: 50vh;
+}
+.max-h-\[55vh\] {
+  max-height: 55vh;
+}
+.max-h-\[70vh\] {
+  max-height: 70vh;
+}
+.max-h-\[72vh\] {
+  max-height: 72vh;
+}
+.min-h-0 {
+  min-height: 0px;
+}
+.min-h-\[110px\] {
+  min-height: 110px;
+}
+.min-h-\[170px\] {
+  min-height: 170px;
+}
+.min-h-\[190px\] {
+  min-height: 190px;
+}
+.min-h-\[80px\] {
+  min-height: 80px;
+}
+.w-1 {
+  width: 0.25rem;
+}
+.w-1\.5 {
+  width: 0.375rem;
+}
+.w-12 {
+  width: 3rem;
+}
+.w-14 {
+  width: 3.5rem;
+}
+.w-16 {
+  width: 4rem;
+}
+.w-20 {
+  width: 5rem;
+}
+.w-24 {
+  width: 6rem;
+}
+.w-28 {
+  width: 7rem;
+}
+.w-3 {
+  width: 0.75rem;
+}
+.w-3\.5 {
+  width: 0.875rem;
+}
+.w-4 {
+  width: 1rem;
+}
+.w-40 {
+  width: 10rem;
+}
+.w-48 {
+  width: 12rem;
+}
+.w-5 {
+  width: 1.25rem;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.w-64 {
+  width: 16rem;
+}
+.w-7 {
+  width: 1.75rem;
+}
+.w-8 {
+  width: 2rem;
+}
+.w-\[min\(92vw\2c 26rem\)\] {
+  width: min(92vw, 26rem);
+}
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.w-full {
+  width: 100%;
+}
+.min-w-0 {
+  min-width: 0px;
+}
+.min-w-\[9rem\] {
+  min-width: 9rem;
+}
+.max-w-2xl {
+  max-width: 42rem;
+}
+.max-w-3xl {
+  max-width: 48rem;
+}
+.max-w-4xl {
+  max-width: 56rem;
+}
+.max-w-6xl {
+  max-width: 72rem;
+}
+.max-w-lg {
+  max-width: 32rem;
+}
+.max-w-md {
+  max-width: 28rem;
+}
+.max-w-sm {
+  max-width: 24rem;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+.shrink-0 {
+  flex-shrink: 0;
+}
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+@keyframes fade-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 180ms ease-out;
+}
+@keyframes pulse {
+
+  50% {
+    opacity: .5;
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+.cursor-grab {
+  cursor: grab;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.resize-y {
+  resize: vertical;
+}
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-center {
+  align-items: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-1\.5 {
+  gap: 0.375rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-2\.5 {
+  gap: 0.625rem;
+}
+.gap-3 {
+  gap: 0.75rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.space-y-0\.5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.125rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.125rem * var(--tw-space-y-reverse));
+}
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+.space-y-1\.5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.375rem * var(--tw-space-y-reverse));
+}
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-y-auto {
+  overflow-y: auto;
+}
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+.whitespace-pre-line {
+  white-space: pre-line;
+}
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+.rounded {
+  border-radius: 0.5rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+.rounded-md {
+  border-radius: 0.375rem;
+}
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+.rounded-t-xl {
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+}
+.border {
+  border-width: 1px;
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-y {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+.border-b {
+  border-bottom-width: 1px;
+}
+.border-r-2 {
+  border-right-width: 2px;
+}
+.border-s-4 {
+  border-inline-start-width: 4px;
+}
+.border-t {
+  border-top-width: 1px;
+}
+.border-dashed {
+  border-style: dashed;
+}
+.border-amber-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(253 230 138 / var(--tw-border-opacity, 1));
+}
+.border-amber-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(252 211 77 / var(--tw-border-opacity, 1));
+}
+.border-amber-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(217 119 6 / var(--tw-border-opacity, 1));
+}
+.border-brand-100 {
+  --tw-border-opacity: 1;
+  border-color: rgb(216 232 250 / var(--tw-border-opacity, 1));
+}
+.border-brand-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(180 209 244 / var(--tw-border-opacity, 1));
+}
+.border-brand-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(54 112 192 / var(--tw-border-opacity, 1));
+}
+.border-brand-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(32 69 131 / var(--tw-border-opacity, 1));
+}
+.border-emerald-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(167 243 208 / var(--tw-border-opacity, 1));
+}
+.border-emerald-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(110 231 183 / var(--tw-border-opacity, 1));
+}
+.border-emerald-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(5 150 105 / var(--tw-border-opacity, 1));
+}
+.border-red-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(254 202 202 / var(--tw-border-opacity, 1));
+}
+.border-red-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(220 38 38 / var(--tw-border-opacity, 1));
+}
+.border-slate-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(226 232 240 / var(--tw-border-opacity, 1));
+}
+.border-slate-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(203 213 225 / var(--tw-border-opacity, 1));
+}
+.border-slate-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(148 163 184 / var(--tw-border-opacity, 1));
+}
+.border-slate-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(71 85 105 / var(--tw-border-opacity, 1));
+}
+.border-transparent {
+  border-color: transparent;
+}
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+}
+.border-white\/10 {
+  border-color: rgb(255 255 255 / 0.1);
+}
+.bg-\[rgb\(var\(--surface\)\)\] {
+  background-color: rgb(var(--surface));
+}
+.bg-\[rgb\(var\(--surface\)\)\]\/90 {
+  background-color: rgb(var(--surface) / 0.9);
+}
+.bg-\[rgb\(var\(--surface-muted\)\)\] {
+  background-color: rgb(var(--surface-muted));
+}
+.bg-amber-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 243 199 / var(--tw-bg-opacity, 1));
+}
+.bg-amber-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 251 235 / var(--tw-bg-opacity, 1));
+}
+.bg-amber-50\/40 {
+  background-color: rgb(255 251 235 / 0.4);
+}
+.bg-amber-50\/60 {
+  background-color: rgb(255 251 235 / 0.6);
+}
+.bg-amber-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 158 11 / var(--tw-bg-opacity, 1));
+}
+.bg-amber-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 119 6 / var(--tw-bg-opacity, 1));
+}
+.bg-black\/25 {
+  background-color: rgb(0 0 0 / 0.25);
+}
+.bg-brand-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(216 232 250 / var(--tw-bg-opacity, 1));
+}
+.bg-brand-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(238 245 253 / var(--tw-bg-opacity, 1));
+}
+.bg-brand-50\/60 {
+  background-color: rgb(238 245 253 / 0.6);
+}
+.bg-brand-50\/70 {
+  background-color: rgb(238 245 253 / 0.7);
+}
+.bg-brand-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(40 87 161 / var(--tw-bg-opacity, 1));
+}
+.bg-brand-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(32 69 131 / var(--tw-bg-opacity, 1));
+}
+.bg-brand-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(27 49 87 / var(--tw-bg-opacity, 1));
+}
+.bg-cyan-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 254 255 / var(--tw-bg-opacity, 1));
+}
+.bg-emerald-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 250 229 / var(--tw-bg-opacity, 1));
+}
+.bg-emerald-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 253 245 / var(--tw-bg-opacity, 1));
+}
+.bg-emerald-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(16 185 129 / var(--tw-bg-opacity, 1));
+}
+.bg-emerald-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 150 105 / var(--tw-bg-opacity, 1));
+}
+.bg-indigo-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 231 255 / var(--tw-bg-opacity, 1));
+}
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1));
+}
+.bg-red-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
+}
+.bg-red-50\/40 {
+  background-color: rgb(254 242 242 / 0.4);
+}
+.bg-red-50\/60 {
+  background-color: rgb(254 242 242 / 0.6);
+}
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity, 1));
+}
+.bg-rose-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 228 230 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-100\/80 {
+  background-color: rgb(241 245 249 / 0.8);
+}
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-200\/70 {
+  background-color: rgb(226 232 240 / 0.7);
+}
+.bg-slate-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-300\/60 {
+  background-color: rgb(203 213 225 / 0.6);
+}
+.bg-slate-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-900\/50 {
+  background-color: rgb(15 23 42 / 0.5);
+}
+.bg-teal-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(204 251 241 / var(--tw-bg-opacity, 1));
+}
+.bg-teal-50\/50 {
+  background-color: rgb(240 253 250 / 0.5);
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+.bg-white\/10 {
+  background-color: rgb(255 255 255 / 0.1);
+}
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+.from-brand-400\/40 {
+  --tw-gradient-from: rgb(86 143 216 / 0.4) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(86 143 216 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-brand-50 {
+  --tw-gradient-from: #eef5fd var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(238 245 253 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-brand-500 {
+  --tw-gradient-from: #3670c0 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(54 112 192 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-brand-600 {
+  --tw-gradient-from: #2857a1 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(40 87 161 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-brand-100 {
+  --tw-gradient-to: #d8e8fa var(--tw-gradient-to-position);
+}
+.to-brand-700 {
+  --tw-gradient-to: #204583 var(--tw-gradient-to-position);
+}
+.to-brand-700\/40 {
+  --tw-gradient-to: rgb(32 69 131 / 0.4) var(--tw-gradient-to-position);
+}
+.p-0\.5 {
+  padding: 0.125rem;
+}
+.p-1 {
+  padding: 0.25rem;
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.p-3 {
+  padding: 0.75rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+.p-6 {
+  padding: 1.5rem;
+}
+.p-8 {
+  padding: 2rem;
+}
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+.px-1\.5 {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.px-2\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.py-3\.5 {
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+.pr-4 {
+  padding-right: 1rem;
+}
+.pr-9 {
+  padding-right: 2.25rem;
+}
+.pt-12 {
+  padding-top: 3rem;
+}
+.pt-4 {
+  padding-top: 1rem;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-end {
+  text-align: end;
+}
+.align-top {
+  vertical-align: top;
+}
+.text-\[10px\] {
+  font-size: 10px;
+}
+.text-\[11px\] {
+  font-size: 11px;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-extrabold {
+  font-weight: 800;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-normal {
+  font-weight: 400;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.tabular-nums {
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+.leading-relaxed {
+  line-height: 1.625;
+}
+.leading-tight {
+  line-height: 1.25;
+}
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+.text-\[rgb\(var\(--text\)\)\] {
+  color: rgb(var(--text));
+}
+.text-\[rgb\(var\(--text-muted\)\)\] {
+  color: rgb(var(--text-muted));
+}
+.text-amber-500 {
+  --tw-text-opacity: 1;
+  color: rgb(245 158 11 / var(--tw-text-opacity, 1));
+}
+.text-amber-600 {
+  --tw-text-opacity: 1;
+  color: rgb(217 119 6 / var(--tw-text-opacity, 1));
+}
+.text-amber-700 {
+  --tw-text-opacity: 1;
+  color: rgb(180 83 9 / var(--tw-text-opacity, 1));
+}
+.text-amber-800 {
+  --tw-text-opacity: 1;
+  color: rgb(146 64 14 / var(--tw-text-opacity, 1));
+}
+.text-amber-900 {
+  --tw-text-opacity: 1;
+  color: rgb(120 53 15 / var(--tw-text-opacity, 1));
+}
+.text-brand-600 {
+  --tw-text-opacity: 1;
+  color: rgb(40 87 161 / var(--tw-text-opacity, 1));
+}
+.text-brand-700 {
+  --tw-text-opacity: 1;
+  color: rgb(32 69 131 / var(--tw-text-opacity, 1));
+}
+.text-brand-800 {
+  --tw-text-opacity: 1;
+  color: rgb(29 58 106 / var(--tw-text-opacity, 1));
+}
+.text-brand-900 {
+  --tw-text-opacity: 1;
+  color: rgb(27 49 87 / var(--tw-text-opacity, 1));
+}
+.text-cyan-700 {
+  --tw-text-opacity: 1;
+  color: rgb(14 116 144 / var(--tw-text-opacity, 1));
+}
+.text-emerald-600 {
+  --tw-text-opacity: 1;
+  color: rgb(5 150 105 / var(--tw-text-opacity, 1));
+}
+.text-emerald-700 {
+  --tw-text-opacity: 1;
+  color: rgb(4 120 87 / var(--tw-text-opacity, 1));
+}
+.text-emerald-800 {
+  --tw-text-opacity: 1;
+  color: rgb(6 95 70 / var(--tw-text-opacity, 1));
+}
+.text-emerald-900 {
+  --tw-text-opacity: 1;
+  color: rgb(6 78 59 / var(--tw-text-opacity, 1));
+}
+.text-indigo-900 {
+  --tw-text-opacity: 1;
+  color: rgb(49 46 129 / var(--tw-text-opacity, 1));
+}
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+}
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity, 1));
+}
+.text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity, 1));
+}
+.text-rose-900 {
+  --tw-text-opacity: 1;
+  color: rgb(136 19 55 / var(--tw-text-opacity, 1));
+}
+.text-slate-100 {
+  --tw-text-opacity: 1;
+  color: rgb(241 245 249 / var(--tw-text-opacity, 1));
+}
+.text-slate-200 {
+  --tw-text-opacity: 1;
+  color: rgb(226 232 240 / var(--tw-text-opacity, 1));
+}
+.text-slate-300 {
+  --tw-text-opacity: 1;
+  color: rgb(203 213 225 / var(--tw-text-opacity, 1));
+}
+.text-slate-400\/80 {
+  color: rgb(148 163 184 / 0.8);
+}
+.text-slate-600 {
+  --tw-text-opacity: 1;
+  color: rgb(71 85 105 / var(--tw-text-opacity, 1));
+}
+.text-slate-700 {
+  --tw-text-opacity: 1;
+  color: rgb(51 65 85 / var(--tw-text-opacity, 1));
+}
+.text-teal-900 {
+  --tw-text-opacity: 1;
+  color: rgb(19 78 74 / var(--tw-text-opacity, 1));
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+.underline {
+  text-decoration-line: underline;
+}
+.accent-brand-700 {
+  accent-color: #204583;
+}
+.opacity-0 {
+  opacity: 0;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
+.opacity-60 {
+  opacity: 0.6;
+}
+.opacity-70 {
+  opacity: 0.7;
+}
+.opacity-75 {
+  opacity: 0.75;
+}
+.opacity-80 {
+  opacity: 0.8;
+}
+.shadow-2xl {
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-\[-1px_0_0_rgb\(var\(--border\)\)\] {
+  --tw-shadow: -1px 0 0 rgb(var(--border));
+  --tw-shadow-colored: -1px 0 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-\[0_1px_0_0_rgb\(var\(--border\)\)\] {
+  --tw-shadow: 0 1px 0 0 rgb(var(--border));
+  --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-\[1px_0_0_rgb\(var\(--border\)\)\] {
+  --tw-shadow: 1px 0 0 rgb(var(--border));
+  --tw-shadow-colored: 1px 0 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-card {
+  --tw-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.06), 0 1px 3px 0 rgb(15 23 42 / 0.04);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color), 0 1px 3px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-inner {
+  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.ring-1 {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+.ring-2 {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+.ring-brand-500\/40 {
+  --tw-ring-color: rgb(54 112 192 / 0.4);
+}
+.ring-brand-500\/50 {
+  --tw-ring-color: rgb(54 112 192 / 0.5);
+}
+.ring-emerald-500\/50 {
+  --tw-ring-color: rgb(16 185 129 / 0.5);
+}
+.ring-emerald-500\/60 {
+  --tw-ring-color: rgb(16 185 129 / 0.6);
+}
+.ring-white\/15 {
+  --tw-ring-color: rgb(255 255 255 / 0.15);
+}
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.backdrop-blur {
+  --tw-backdrop-blur: blur(8px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.backdrop-blur-\[2px\] {
+  --tw-backdrop-blur: blur(2px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+}
+
+.hover\:border-brand-400:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(86 143 216 / var(--tw-border-opacity, 1));
+}
+
+.hover\:bg-\[rgb\(var\(--surface-muted\)\)\]:hover {
+  background-color: rgb(var(--surface-muted));
+}
+
+.hover\:bg-red-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-white\/15:hover {
+  background-color: rgb(255 255 255 / 0.15);
+}
+
+.hover\:text-\[rgb\(var\(--text\)\)\]:hover {
+  color: rgb(var(--text));
+}
+
+.hover\:text-brand-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(32 69 131 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-red-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+}
+
+.hover\:opacity-100:hover {
+  opacity: 1;
+}
+
+.group:hover .group-hover\:flex {
+  display: flex;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.dark\:border-amber-700:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(180 83 9 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-amber-800:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(146 64 14 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-amber-900:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(120 53 15 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-brand-800:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(29 58 106 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-emerald-900:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(6 78 59 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-red-900:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(127 29 29 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-slate-600:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(71 85 105 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-slate-700:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(51 65 85 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-slate-900:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(15 23 42 / var(--tw-border-opacity, 1));
+}
+
+.dark\:bg-amber-900\/30:is(.dark *) {
+  background-color: rgb(120 53 15 / 0.3);
+}
+
+.dark\:bg-amber-900\/40:is(.dark *) {
+  background-color: rgb(120 53 15 / 0.4);
+}
+
+.dark\:bg-amber-950\/10:is(.dark *) {
+  background-color: rgb(69 26 3 / 0.1);
+}
+
+.dark\:bg-amber-950\/20:is(.dark *) {
+  background-color: rgb(69 26 3 / 0.2);
+}
+
+.dark\:bg-amber-950\/40:is(.dark *) {
+  background-color: rgb(69 26 3 / 0.4);
+}
+
+.dark\:bg-brand-900\/30:is(.dark *) {
+  background-color: rgb(27 49 87 / 0.3);
+}
+
+.dark\:bg-brand-900\/40:is(.dark *) {
+  background-color: rgb(27 49 87 / 0.4);
+}
+
+.dark\:bg-brand-900\/50:is(.dark *) {
+  background-color: rgb(27 49 87 / 0.5);
+}
+
+.dark\:bg-cyan-950\/40:is(.dark *) {
+  background-color: rgb(8 51 68 / 0.4);
+}
+
+.dark\:bg-emerald-900\/40:is(.dark *) {
+  background-color: rgb(6 78 59 / 0.4);
+}
+
+.dark\:bg-emerald-950\/40:is(.dark *) {
+  background-color: rgb(2 44 34 / 0.4);
+}
+
+.dark\:bg-emerald-950\/50:is(.dark *) {
+  background-color: rgb(2 44 34 / 0.5);
+}
+
+.dark\:bg-indigo-900\/40:is(.dark *) {
+  background-color: rgb(49 46 129 / 0.4);
+}
+
+.dark\:bg-red-950\/20:is(.dark *) {
+  background-color: rgb(69 10 10 / 0.2);
+}
+
+.dark\:bg-red-950\/40:is(.dark *) {
+  background-color: rgb(69 10 10 / 0.4);
+}
+
+.dark\:bg-red-950\/50:is(.dark *) {
+  background-color: rgb(69 10 10 / 0.5);
+}
+
+.dark\:bg-rose-900\/40:is(.dark *) {
+  background-color: rgb(136 19 55 / 0.4);
+}
+
+.dark\:bg-slate-700:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:bg-slate-700\/50:is(.dark *) {
+  background-color: rgb(51 65 85 / 0.5);
+}
+
+.dark\:bg-slate-700\/60:is(.dark *) {
+  background-color: rgb(51 65 85 / 0.6);
+}
+
+.dark\:bg-slate-700\/70:is(.dark *) {
+  background-color: rgb(51 65 85 / 0.7);
+}
+
+.dark\:bg-slate-800:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:bg-slate-800\/60:is(.dark *) {
+  background-color: rgb(30 41 59 / 0.6);
+}
+
+.dark\:bg-slate-800\/80:is(.dark *) {
+  background-color: rgb(30 41 59 / 0.8);
+}
+
+.dark\:bg-teal-900\/40:is(.dark *) {
+  background-color: rgb(19 78 74 / 0.4);
+}
+
+.dark\:bg-teal-950\/20:is(.dark *) {
+  background-color: rgb(4 47 46 / 0.2);
+}
+
+.dark\:from-brand-900\/50:is(.dark *) {
+  --tw-gradient-from: rgb(27 49 87 / 0.5) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(27 49 87 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.dark\:to-brand-900\/30:is(.dark *) {
+  --tw-gradient-to: rgb(27 49 87 / 0.3) var(--tw-gradient-to-position);
+}
+
+.dark\:text-amber-100:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(254 243 199 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-amber-200:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(253 230 138 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-amber-300:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(252 211 77 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-amber-400:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(251 191 36 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-brand-100:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(216 232 250 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-brand-200:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(180 209 244 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-brand-300:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(132 178 233 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-cyan-200:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(165 243 252 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-cyan-300:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(103 232 249 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-emerald-100:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(209 250 229 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-emerald-200:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(167 243 208 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-emerald-300:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(110 231 183 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-emerald-400:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(52 211 153 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-indigo-100:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(224 231 255 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-red-200:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(254 202 202 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-red-300:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(252 165 165 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-red-400:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-rose-100:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(255 228 230 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-slate-200:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(226 232 240 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-teal-100:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(204 251 241 / var(--tw-text-opacity, 1));
+}
+
+.dark\:hover\:bg-red-950\/40:hover:is(.dark *) {
+  background-color: rgb(69 10 10 / 0.4);
+}
+
+.dark\:hover\:text-brand-200:hover:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(180 209 244 / var(--tw-text-opacity, 1));
+}
+
+.dark\:hover\:text-red-400:hover:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity, 1));
+}
+
+@media (min-width: 640px) {
+
+  .sm\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+
+  .md\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .lg\:p-6 {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+
+  .xl\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+html,body{height:100%;margin:0}.demo{display:flex;height:100%}
+</style></head>
+<body>
+<div class="demo">
+  <aside class="sidebar flex h-full w-64 shrink-0 flex-col text-slate-100">
+    <div class="flex items-center gap-2.5 border-b border-white/10 px-4 py-3.5">
+      <div class="rounded-lg bg-gradient-to-br from-brand-400/40 to-brand-700/40 p-2 ring-1 ring-white/15"><span>📘</span></div>
+      <div class="min-w-0"><p class="truncate text-sm font-extrabold">دفتر الأستاذ الرقمي</p><p class="truncate text-[11px] text-slate-300">2026 - 2027</p></div>
+    </div>
+    <nav class="min-h-0 flex-1 overflow-y-auto px-2 pb-3">
+      <div class="mt-3"><p class="px-3 pb-1 text-[10px] font-bold uppercase tracking-wide text-slate-400/80">المتابعة اليومية</p>
+        <ul class="space-y-0.5"><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الرئيسية</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">يومي</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الجدول</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">دفتر التنقيط</span></button></li></ul></div><div class="mt-3"><p class="px-3 pb-1 text-[10px] font-bold uppercase tracking-wide text-slate-400/80">الأقسام والتلاميذ</p>
+        <ul class="space-y-0.5"><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الرئيسية</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">يومي</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الجدول</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">دفتر التنقيط</span></button></li></ul></div><div class="mt-3"><p class="px-3 pb-1 text-[10px] font-bold uppercase tracking-wide text-slate-400/80">التقويم والتنقيط</p>
+        <ul class="space-y-0.5"><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الرئيسية</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">يومي</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الجدول</span></button></li><li><button class="sidebar-link w-full sidebar-link-active"><span>•</span><span class="truncate">دفتر التنقيط</span></button></li></ul></div><div class="mt-3"><p class="px-3 pb-1 text-[10px] font-bold uppercase tracking-wide text-slate-400/80">التخطيط والتقارير</p>
+        <ul class="space-y-0.5"><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الرئيسية</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">يومي</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الجدول</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">دفتر التنقيط</span></button></li></ul></div><div class="mt-3"><p class="px-3 pb-1 text-[10px] font-bold uppercase tracking-wide text-slate-400/80">النظام</p>
+        <ul class="space-y-0.5"><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الرئيسية</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">يومي</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">الجدول</span></button></li><li><button class="sidebar-link w-full sidebar-link-idle"><span>•</span><span class="truncate">دفتر التنقيط</span></button></li></ul></div>
+    </nav>
+  </aside>
+  <div class="flex min-w-0 flex-1 flex-col">
+    <header class="sticky top-0 z-30 flex h-14 shrink-0 items-center justify-between gap-3 border-b bg-[rgb(var(--surface))]/90 px-4 backdrop-blur">
+      <div class="flex min-w-0 items-center gap-3"><p class="truncate text-sm font-bold">متوسطة الأمير عبد القادر</p><span class="badge">2026 - 2027</span></div>
+      <span class="muted text-xs">الأحد 27/09/2026</span>
+    </header>
+    <main class="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-behavior-contain p-4 lg:p-6">
+      <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
+        <div><h1 class="text-xl font-extrabold">دفتر التنقيط</h1><p class="muted text-xs">رابعة متوسط 1 — الفصل الأول — كل الخانات الملوّنة تُكتب مباشرة</p></div>
+        <div class="flex gap-2"><button class="btn btn-secondary btn-sm">إعادة حساب المعدلات</button><button class="btn btn-primary btn-sm">حفظ الكل</button></div>
+      </div>
+      <div class="mb-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <div class="stat-card"><div><p class="muted text-xs">التلاميذ</p><p class="stat-value">24</p></div></div>
+        <div class="stat-card"><div><p class="muted text-xs">متوسط القسم</p><p class="stat-value">13.42</p></div></div>
+        <div class="stat-card"><div><p class="muted text-xs">أعلى علامة</p><p class="stat-value">16.75</p></div></div>
+        <div class="stat-card"><div><p class="muted text-xs">أدنى علامة</p><p class="stat-value">8.63</p></div></div>
+        <div class="stat-card"><div><p class="muted text-xs">عند العتبة</p><p class="stat-value">18 / 24</p></div></div>
+      </div>
+      <div class="mb-3 flex flex-wrap items-center gap-2">
+        <button class="btn btn-primary btn-sm">إضافة عمود فرض</button>
+        <button class="btn btn-secondary btn-sm">إضافة عمود اختبار</button>
+        <button class="btn btn-primary btn-sm">عرض الدفتر الورقي</button>
+      </div>
+      <div class="card card-pad mb-3 text-xs">اكتب أي علامة أينما شئت: خانات «الفرض» و«معدل النشاطات» و«الاختبار» تُكتب مباشرة.</div>
+      <h2 class="section-title mb-2 text-sm">عرض الدفتر الورقي (الافتراضي) — بلا تمرير أفقي</h2>
+      <div class="table-wrap" id="paper">
+        <table class="grid text-xs"><thead><tr><th style="width:3rem;min-width:3rem" class="sticky right-0 z-20 text-center">الرقم</th><th class="w-44 sticky right-[3rem] z-20 shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem]">الاسم واللقب</span></th><th class="w-12 min-w-[3.25rem] text-center">الغيابات</th><th class="w-20 text-center bg-slate-100/80 dark:bg-slate-800/80"><span class="block whitespace-nowrap">الكراس</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-slate-100/80 dark:bg-slate-800/80"><span class="block whitespace-nowrap">المشاركة</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-slate-100/80 dark:bg-slate-800/80"><span class="block whitespace-nowrap">السلوك</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-slate-100/80 dark:bg-slate-800/80"><span class="block whitespace-nowrap">الوظائف</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 min-w-[5rem] text-center bg-slate-200/70 dark:bg-slate-700/70">التقويم المستمر</th><th class="w-20 text-center bg-teal-100 text-teal-900 dark:bg-teal-900/40 dark:text-teal-100"><span class="block whitespace-nowrap">الفرض</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-teal-100 text-teal-900 dark:bg-teal-900/40 dark:text-teal-100"><span class="block whitespace-nowrap">معدل النشاطات</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-teal-100 text-teal-900 dark:bg-teal-900/40 dark:text-teal-100"><span class="block whitespace-nowrap">الاختبار</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-brand-100 dark:bg-brand-900/50">المعدل</th></tr></thead><tbody><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">1</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">أمين بوعلام</span></td><td class="text-center tabular-nums">2</td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="14.38" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="14.38" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">2</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">ياسمين حداد</span></td><td class="text-center tabular-nums">0</td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="16.75" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="16.75" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">3</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">عبد الرحمان مرابط</span></td><td class="text-center tabular-nums">1</td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="9" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="11.13" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="9" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="11.13" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">4</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">نسرين زيتوني</span></td><td class="text-center tabular-nums">0</td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="13" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="14.5" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="13" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="14.5" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">5</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">إسلام بلقاسم</span></td><td class="text-center tabular-nums">3</td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="7" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="8.63" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="7" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="8.63" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">6</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">هبة عماري</span></td><td class="text-center tabular-nums">0</td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="14.13" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="14.13" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr></tbody></table>
+      </div>
+      <h2 class="section-title mb-2 mt-6 text-sm">عرض كل الأعمدة (يشمل أعمدة التقييم التفصيلية)</h2>
+      <div class="table-wrap" id="full">
+        <table class="grid text-xs"><thead><tr><th style="width:3rem;min-width:3rem" class="sticky right-0 z-20 text-center">الرقم</th><th class="w-44 sticky right-[3rem] z-20 shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem]">الاسم واللقب</span></th><th class="w-12 min-w-[3.25rem] text-center">الغيابات</th><th class="w-20 text-center bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100"><span class="block whitespace-nowrap">الفرض الأول</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100"><span class="block whitespace-nowrap">فرض الكتاب</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-rose-100 text-rose-900 dark:bg-rose-900/40 dark:text-rose-100"><span class="block whitespace-nowrap">الاختبار الأول</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-100"><span class="block whitespace-nowrap">نشاط تجريبي</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-100"><span class="block whitespace-nowrap">مشروع الوحدة</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-indigo-100 text-indigo-900 dark:bg-indigo-900/40 dark:text-indigo-100"><span class="block whitespace-nowrap">مشاركة القسم</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-indigo-100 text-indigo-900 dark:bg-indigo-900/40 dark:text-indigo-100"><span class="block whitespace-nowrap">تقويم تشخيصي</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-slate-100/80 dark:bg-slate-800/80"><span class="block whitespace-nowrap">الكراس</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-slate-100/80 dark:bg-slate-800/80"><span class="block whitespace-nowrap">المشاركة</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-slate-100/80 dark:bg-slate-800/80"><span class="block whitespace-nowrap">السلوك</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-slate-100/80 dark:bg-slate-800/80"><span class="block whitespace-nowrap">الوظائف</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 min-w-[5rem] text-center bg-slate-200/70 dark:bg-slate-700/70">التقويم المستمر</th><th class="w-20 text-center bg-teal-100 text-teal-900 dark:bg-teal-900/40 dark:text-teal-100"><span class="block whitespace-nowrap">الفرض</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-teal-100 text-teal-900 dark:bg-teal-900/40 dark:text-teal-100"><span class="block whitespace-nowrap">معدل النشاطات</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-teal-100 text-teal-900 dark:bg-teal-900/40 dark:text-teal-100"><span class="block whitespace-nowrap">الاختبار</span><span class="block text-[10px] font-normal opacity-75">/20</span></th><th class="w-20 text-center bg-brand-100 dark:bg-brand-900/50">المعدل</th></tr></thead><tbody><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">1</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">أمين بوعلام</span></td><td class="text-center tabular-nums">2</td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="16" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="14" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="17" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="18" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="16" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="14.38" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="14.38" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">2</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">ياسمين حداد</span></td><td class="text-center tabular-nums">0</td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="18" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="17" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="19" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="18" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="17" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="18" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="17" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="16.75" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="16.75" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">3</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">عبد الرحمان مرابط</span></td><td class="text-center tabular-nums">1</td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="11" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="13" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="10" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="11" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="13" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="9" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="11.13" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="9" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="11.13" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">4</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">نسرين زيتوني</span></td><td class="text-center tabular-nums">0</td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="16" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="16" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="16" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="14" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="13" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="14.5" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="13" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="14.5" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">5</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">إسلام بلقاسم</span></td><td class="text-center tabular-nums">3</td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="9" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="8" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="10" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="11" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="9" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="9" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="10" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="7" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="8.63" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="7" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="8.63" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr><tr><td style="width:3rem;min-width:3rem" class="sticky right-0 z-10 bg-[rgb(var(--surface))] text-center tabular-nums">6</td><td class="sticky right-[3rem] z-10 bg-[rgb(var(--surface))] font-medium shadow-[1px_0_0_rgb(var(--border))]"><span class="block min-w-[8.5rem] truncate">هبة عماري</span></td><td class="text-center tabular-nums">0</td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="14" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="14" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="16" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="14" placeholder="—" /></td><td class="p-0.5 bg-amber-50/40 dark:bg-amber-950/10"><input class="cell-input" inputmode="decimal" value="15" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 "><input class="cell-input" inputmode="decimal" value="14.13" placeholder="—" /></td><td class="text-center tabular-nums">undefined</td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="12" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="14.13" placeholder="—" /></td><td class="p-0.5 bg-teal-50/50 dark:bg-teal-950/20"><input class="cell-input" inputmode="decimal" value="undefined" placeholder="—" /></td><td class="text-center bg-brand-50/60 dark:bg-brand-950/20"><span class="inline-block rounded px-1.5 py-0.5 font-bold tabular-nums bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">undefined</span></td></tr></tbody></table>
+      </div>
+    </main>
+  </div>
+</div>
+</body></html>

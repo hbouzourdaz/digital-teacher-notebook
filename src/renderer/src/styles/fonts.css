@@ -1,0 +1,56 @@
+/*
+ * الخطوط محلية فقط — لا يوجد أي استدعاء لـ Google Fonts أو أي CDN.
+ * الملفات المضمّنة في: resources/fonts/
+ *   Amiri-Regular.ttf / Amiri-Bold.ttf                      → خط الوثائق والطباعة
+ *   Tajawal-Regular/Medium/Bold/ExtraBold.ttf               → خط الواجهة
+ * في حال عدم وجود الملفات يستعمل التطبيق خطوط النظام العربية تلقائياً
+ * (Traditional Arabic / Segoe UI / Tahoma) فيبقى التطبيق صالحاً للعمل.
+ */
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('../../../resources/fonts/Amiri-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('../../../resources/fonts/Amiri-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../../resources/fonts/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../../resources/fonts/Tajawal-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../../resources/fonts/Tajawal-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../../../resources/fonts/Tajawal-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}

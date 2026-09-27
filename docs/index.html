@@ -5,127 +5,145 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>دفتر الأستاذ الرقمي — دفترك الورقي لكن أسرع</title>
 <meta name="description" content="تطبيق سطح مكتب مجاني للأستاذ في التعليم المتوسط: الجدول الأسبوعي، الدفتر اليومي، دفتر التنقيط، التوزيع السنوي، وطباعة 11 وثيقة جاهزة — كل ذلك دون إنترنت." />
+<!--
+  الخطوط: Cairo (عناوين) + IBM Plex Sans Arabic (نصوص) + Tajawal بديل.
+  تُحمّل من Google Fonts عند توفر الشبكة، مع بدائل نظام ممتازة دونها
+  (التطبيق نفسه يعمل دون إنترنت، وهذه الصفحة تعرض جيداً في الحالتين).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   /* ============================================================
-     دفتر الأستاذ الرقمي — صفحة هبوط
-     أنماط Tailwind-style مضمّنة يدوياً (تعمل دون إنترنت)
+     دفتر الأستاذ الرقمي — صفحة هبوط (v2: خطوط + واجهة محسّنة)
      ============================================================ */
   *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e2e8f0}
   :root{
-    --brand-900:#1b3157; --brand-700:#204583; --brand-600:#2857a1; --brand-500:#3670c0;
-    --brand-50:#eef5fd; --brand-200:#b4d1f4;
-    --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc;
+    --brand-900:#132241; --brand-800:#1b3157; --brand-700:#204583; --brand-600:#2857a1; --brand-500:#3670c0;
+    --brand-50:#eef5fd; --brand-100:#dbeafe; --brand-200:#b4d1f4;
+    --ink:#0f172a; --muted:#5c6b84; --line:#e4eaf2; --bg:#f7f9fc;
+    --font-head:'Cairo','Tajawal','Segoe UI',Tahoma,Arial,sans-serif;
+    --font-body:'IBM Plex Sans Arabic','Cairo','Tajawal','Segoe UI',Tahoma,Arial,sans-serif;
   }
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
-  h1,h2,h3,h4{margin:0;font-weight:800;line-height:1.3;letter-spacing:-.02em}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);line-height:1.8;
+    font-family:var(--font-body);font-size:16px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3,h4{margin:0;font-weight:800;font-family:var(--font-head);line-height:1.35;letter-spacing:-.01em}
   p{margin:0}
   a{text-decoration:none;color:inherit}
-  .container{max-width:72rem;margin-inline:auto;padding-inline:1.5rem}
+  ::selection{background:var(--brand-200)}
+  .container{max-width:74rem;margin-inline:auto;padding-inline:1.5rem}
 
   /* ---------------- الواجهة العلوية ---------------- */
-  .nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:4rem}
-  .logo{display:flex;align-items:center;gap:.6rem;font-weight:800;color:var(--brand-900)}
-  .logo-badge{display:grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:.7rem;background:linear-gradient(135deg,var(--brand-600),var(--brand-900));color:#fff;font-size:1.1rem;box-shadow:0 2px 8px rgba(27,49,87,.35)}
-  .nav-links{display:flex;gap:1.75rem;font-size:.92rem;font-weight:600;color:var(--muted)}
-  .nav-links a{transition:color .15s}
+  .nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:4.2rem}
+  .logo{display:flex;align-items:center;gap:.65rem;font-weight:800;color:var(--brand-800);font-family:var(--font-head);font-size:1.02rem}
+  .logo-badge{display:grid;place-items:center;width:2.35rem;height:2.35rem;border-radius:.75rem;background:linear-gradient(135deg,var(--brand-600),var(--brand-900));color:#fff;font-size:1.15rem;box-shadow:0 3px 10px rgba(27,49,87,.35)}
+  .nav-links{display:flex;gap:1.9rem;font-size:.93rem;font-weight:600;color:var(--muted);font-family:var(--font-head)}
+  .nav-links a{transition:color .15s;position:relative;padding-block:.2rem}
   .nav-links a:hover{color:var(--brand-600)}
+  .nav-links a::after{content:'';position:absolute;bottom:0;inset-inline:0;height:2px;border-radius:2px;background:var(--brand-500);transform:scaleX(0);transition:transform .18s}
+  .nav-links a:hover::after{transform:scaleX(1)}
   @media(max-width:760px){.nav-links{display:none}}
 
   /* ---------------- الأزرار ---------------- */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-weight:700;border-radius:.85rem;padding:.8rem 1.7rem;font-size:.98rem;transition:all .18s;cursor:pointer;border:1px solid transparent}
-  .btn-primary{background:linear-gradient(180deg,var(--brand-600),var(--brand-700));color:#fff;box-shadow:0 4px 14px rgba(32,69,131,.35)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(32,69,131,.42)}
-  .btn-ghost{background:#fff;border-color:var(--line);color:var(--brand-900)}
-  .btn-ghost:hover{border-color:var(--brand-200);background:var(--brand-50)}
-  .btn-sm{padding:.55rem 1.2rem;font-size:.88rem;border-radius:.7rem}
-  .btn-lg{padding:1rem 2.2rem;font-size:1.05rem}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;font-weight:700;font-family:var(--font-head);border-radius:.9rem;padding:.85rem 1.9rem;font-size:1rem;transition:all .18s;cursor:pointer;border:1px solid transparent}
+  .btn-primary{background:linear-gradient(180deg,var(--brand-600),var(--brand-700));color:#fff;box-shadow:0 5px 16px rgba(32,69,131,.38)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(32,69,131,.46)}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--brand-800);box-shadow:0 1px 3px rgba(15,23,42,.06)}
+  .btn-ghost:hover{border-color:var(--brand-200);background:var(--brand-50);transform:translateY(-2px)}
+  .btn-sm{padding:.55rem 1.3rem;font-size:.88rem;border-radius:.75rem}
+  .btn-lg{padding:1.05rem 2.4rem;font-size:1.08rem;border-radius:1rem}
 
   /* ---------------- البطل (Hero) ---------------- */
-  .hero{position:relative;overflow:hidden;background:linear-gradient(150deg,#152547 0%,var(--brand-900) 45%,var(--brand-700) 100%);color:#fff;text-align:center}
-  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 340px at 82% -10%,rgba(86,143,216,.35),transparent 65%),radial-gradient(560px 300px at 10% 110%,rgba(86,143,216,.22),transparent 60%)}
-  .hero-inner{position:relative;padding-block:5.5rem 6rem}
-  .chip{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#dbeafe;border-radius:9999px;padding:.4rem 1.1rem;font-size:.82rem;font-weight:700}
-  .hero h1{font-size:clamp(2.1rem,5.6vw,3.6rem);margin-top:1.4rem;color:#fff}
-  .hero h1 .accent{background:linear-gradient(90deg,#7cb3f5,#b4d1f4);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p.sub{color:#c7d5ea;font-size:1.13rem;max-width:44rem;margin:1.1rem auto 0}
-  .hero-cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2.3rem}
-  .hero .btn-primary{background:#fff;color:var(--brand-900);box-shadow:0 8px 24px rgba(0,0,0,.3)}
-  .hero .btn-primary:hover{box-shadow:0 12px 32px rgba(0,0,0,.38)}
-  .hero .btn-ghost{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:#fff}
-  .hero .btn-ghost:hover{background:rgba(255,255,255,.18)}
-  .hero-meta{margin-top:2rem;color:#8ea5c5;font-size:.85rem;display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap}
-  .hero-meta span{display:inline-flex;align-items:center;gap:.4rem}
+  .hero{position:relative;overflow:hidden;background:linear-gradient(155deg,#0c1830 0%,var(--brand-900) 40%,var(--brand-700) 100%);color:#fff;text-align:center}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(760px 380px at 84% -12%,rgba(96,150,220,.4),transparent 62%),radial-gradient(600px 320px at 8% 112%,rgba(96,150,220,.24),transparent 60%)}
+  .hero::after{content:'📓';position:absolute;font-size:26rem;opacity:.045;inset-inline-start:-4rem;bottom:-7rem;transform:rotate(-12deg);pointer-events:none}
+  .hero-inner{position:relative;padding-block:6rem 6.5rem;z-index:1}
+  .chip{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);color:#d7e4f7;border-radius:9999px;padding:.45rem 1.2rem;font-size:.84rem;font-weight:600;font-family:var(--font-head);backdrop-filter:blur(6px)}
+  .hero h1{font-size:clamp(2.15rem,5.8vw,3.75rem);margin-top:1.6rem;color:#fff;font-weight:900}
+  .hero h1 .accent{background:linear-gradient(90deg,#8cbcf8,#c3dcfd);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{color:#c3d2e9;font-size:1.12rem;max-width:45rem;margin:1.2rem auto 0;font-weight:400}
+  .hero-cta{display:flex;gap:.95rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+  .hero .btn-primary{background:#fff;color:var(--brand-800);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .hero .btn-primary:hover{box-shadow:0 14px 38px rgba(0,0,0,.42)}
+  .hero .btn-ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28);color:#fff;backdrop-filter:blur(6px)}
+  .hero .btn-ghost:hover{background:rgba(255,255,255,.16)}
+  .hero-meta{margin-top:2.4rem;color:#93a9cc;font-size:.86rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;font-weight:500}
+  .hero-meta span{display:inline-flex;align-items:center;gap:.45rem}
 
   /* ---------------- شرائح المميزات ---------------- */
-  .strip{position:relative;z-index:5;margin-top:-2.6rem}
-  .strip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
-  .strip-card{background:#fff;border:1px solid var(--line);border-radius:1rem;padding:1.15rem 1.35rem;display:flex;align-items:center;gap:.9rem;box-shadow:0 10px 30px -12px rgba(15,23,42,.18)}
-  .strip-card .ico{display:grid;place-items:center;width:2.7rem;height:2.7rem;border-radius:.8rem;background:var(--brand-50);color:var(--brand-600);font-size:1.25rem;flex-shrink:0}
-  .strip-card b{display:block;font-size:.98rem}
+  .strip{position:relative;z-index:5;margin-top:-2.8rem}
+  .strip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.05rem}
+  .strip-card{background:#fff;border:1px solid var(--line);border-radius:1.05rem;padding:1.2rem 1.4rem;display:flex;align-items:center;gap:1rem;box-shadow:0 14px 36px -16px rgba(15,23,42,.22)}
+  .strip-card .ico{display:grid;place-items:center;width:2.8rem;height:2.8rem;border-radius:.85rem;background:linear-gradient(135deg,var(--brand-50),var(--brand-100));color:var(--brand-600);font-size:1.3rem;flex-shrink:0}
+  .strip-card b{display:block;font-size:.98rem;font-family:var(--font-head)}
   .strip-card span{font-size:.8rem;color:var(--muted)}
 
   /* ---------------- الأقسام ---------------- */
-  .section{padding-block:4.5rem}
+  .section{padding-block:5rem}
   .section.alt{background:#fff;border-block:1px solid var(--line)}
-  .kicker{display:inline-flex;align-items:center;gap:.5rem;background:var(--brand-50);border:1px solid var(--brand-200);color:var(--brand-600);font-weight:800;font-size:.78rem;border-radius:9999px;padding:.3rem 1rem;margin-bottom:1rem}
-  .title-xl{font-size:clamp(1.6rem,3.4vw,2.3rem);color:var(--brand-900)}
-  .lead{color:var(--muted);font-size:1.03rem;max-width:44rem;margin-top:.7rem}
+  .kicker{display:inline-flex;align-items:center;gap:.5rem;background:var(--brand-50);border:1px solid var(--brand-200);color:var(--brand-600);font-weight:700;font-size:.8rem;font-family:var(--font-head);border-radius:9999px;padding:.32rem 1.05rem;margin-bottom:1.1rem}
+  .title-xl{font-size:clamp(1.65rem,3.6vw,2.4rem);color:var(--brand-900)}
+  .lead{color:var(--muted);font-size:1.05rem;max-width:44rem;margin-top:.8rem}
   .center{text-align:center}
   .center .lead{margin-inline:auto}
 
-  .grid{display:grid;gap:1.4rem}
-  .grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .grid{display:grid;gap:1.5rem}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(265px,1fr))}
   .grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-  .card{background:#fff;border:1px solid var(--line);border-radius:1.1rem;padding:1.7rem;transition:all .2s}
-  .card:hover{border-color:var(--brand-200);box-shadow:0 12px 30px -14px rgba(27,49,87,.25);transform:translateY(-3px)}
-  .card .ico{display:grid;place-items:center;width:3rem;height:3rem;border-radius:.95rem;background:linear-gradient(135deg,var(--brand-50),#dbeafe);color:var(--brand-600);font-size:1.4rem;margin-bottom:1rem}
-  .card h3{font-size:1.08rem;margin-bottom:.45rem}
+  .card{background:#fff;border:1px solid var(--line);border-radius:1.15rem;padding:1.8rem;transition:all .22s}
+  .card:hover{border-color:var(--brand-200);box-shadow:0 16px 38px -16px rgba(27,49,87,.28);transform:translateY(-4px)}
+  .card .ico{display:grid;place-items:center;width:3.1rem;height:3.1rem;border-radius:1rem;background:linear-gradient(135deg,var(--brand-50),var(--brand-100));color:var(--brand-600);font-size:1.45rem;margin-bottom:1.1rem}
+  .card h3{font-size:1.12rem;margin-bottom:.5rem}
   .card p{color:var(--muted);font-size:.93rem}
 
-  /* لقطة شاشة وهمية للجدول */
-  .mock{background:#fff;border:1px solid var(--line);border-radius:1.2rem;box-shadow:0 24px 60px -24px rgba(15,23,42,.35);overflow:hidden}
-  .mock-bar{display:flex;gap:.45rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);background:#f8fafc}
-  .mock-bar i{width:.7rem;height:.7rem;border-radius:50%;background:#e2e8f0}
+  /* لقطة الجدول الوهمية */
+  .mock{background:#fff;border:1px solid var(--line);border-radius:1.3rem;box-shadow:0 30px 70px -28px rgba(15,23,42,.4);overflow:hidden;transform:rotate(-1deg)}
+  .mock:hover{transform:rotate(0deg)}
+  .mock-bar{display:flex;gap:.45rem;padding:.85rem 1.1rem;border-bottom:1px solid var(--line);background:#f8fafc}
+  .mock-bar i{width:.72rem;height:.72rem;border-radius:50%;background:#e2e8f0}
   .mock-bar i:nth-child(1){background:#fca5a5}.mock-bar i:nth-child(2){background:#fcd34d}.mock-bar i:nth-child(3){background:#86efac}
-  .mock-body{padding:1.1rem}
-  .mock-row{display:grid;grid-template-columns:5rem repeat(5,1fr);gap:.45rem;margin-bottom:.45rem}
-  .mock-cell{border-radius:.5rem;padding:.5rem .3rem;font-size:.68rem;text-align:center;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .mc-head{background:#1b3157;color:#fff}
-  .mc-time{background:#f1f5f9;color:#475569;font-size:.62rem}
+  .mock-body{padding:1.2rem}
+  .mock-row{display:grid;grid-template-columns:4.6rem repeat(5,1fr);gap:.45rem;margin-bottom:.45rem}
+  .mock-cell{border-radius:.55rem;padding:.55rem .3rem;font-size:.7rem;text-align:center;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-head)}
+  .mc-head{background:var(--brand-800);color:#fff}
+  .mc-time{background:#f1f5f9;color:#475569;font-size:.64rem;font-weight:600}
   .mc-c1{background:#e0f2fe;color:#075985;border:1px solid #bae6fd}
   .mc-c2{background:#d1fae5;color:#065f46;border:1px solid #a7f3d0}
   .mc-c3{background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe}
   .mc-c4{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
   .mc-empty{background:#fafbfc;border:1px dashed #e2e8f0}
-  .mock-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--line)}
-  .mock-legend span{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted);font-weight:700}
-  .mock-legend i{width:.75rem;height:.75rem;border-radius:50%}
+  .mock-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line)}
+  .mock-legend span{display:inline-flex;align-items:center;gap:.45rem;font-size:.74rem;color:var(--muted);font-weight:600}
+  .mock-legend i{width:.78rem;height:.78rem;border-radius:50%}
 
   /* خطوات البداية */
-  .steps{counter-reset:step;display:grid;gap:1rem}
-  .step{display:flex;gap:1.1rem;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:1rem;padding:1.3rem 1.5rem}
-  .step::before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:.8rem;background:linear-gradient(135deg,var(--brand-600),var(--brand-900));color:#fff;font-weight:800;font-size:1.05rem;flex-shrink:0;box-shadow:0 3px 10px rgba(27,49,87,.3)}
-  .step b{display:block;font-size:1rem}
-  .step p{color:var(--muted);font-size:.92rem;margin-top:.2rem}
+  .steps{counter-reset:step;display:grid;gap:1.05rem}
+  .step{display:flex;gap:1.15rem;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:1.05rem;padding:1.35rem 1.6rem;transition:all .18s}
+  .step:hover{border-color:var(--brand-200);box-shadow:0 10px 26px -14px rgba(27,49,87,.25)}
+  .step::before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:.85rem;background:linear-gradient(135deg,var(--brand-600),var(--brand-900));color:#fff;font-weight:800;font-size:1.08rem;font-family:var(--font-head);flex-shrink:0;box-shadow:0 4px 12px rgba(27,49,87,.32)}
+  .step b{display:block;font-size:1.03rem;font-family:var(--font-head)}
+  .step p{color:var(--muted);font-size:.92rem;margin-top:.25rem}
 
   /* الوثائق */
-  .docs{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
-  .doc-pill{display:inline-flex;align-items:center;gap:.45rem;background:#fff;border:1px solid var(--line);color:var(--brand-900);font-weight:700;font-size:.85rem;border-radius:9999px;padding:.5rem 1.1rem;transition:all .15s}
-  .doc-pill:hover{border-color:var(--brand-200);background:var(--brand-50);transform:translateY(-2px)}
+  .docs{display:flex;flex-wrap:wrap;gap:.65rem;justify-content:center}
+  .doc-pill{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--line);color:var(--brand-800);font-weight:700;font-size:.87rem;font-family:var(--font-head);border-radius:9999px;padding:.55rem 1.25rem;transition:all .15s;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+  .doc-pill:hover{border-color:var(--brand-200);background:var(--brand-50);transform:translateY(-3px);box-shadow:0 8px 20px -10px rgba(27,49,87,.3)}
 
   /* الخصوصية */
-  .privacy{background:linear-gradient(150deg,#0b1a33,var(--brand-900));border-radius:1.5rem;color:#fff;padding:3rem 2rem;text-align:center;position:relative;overflow:hidden}
-  .privacy::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 260px at 85% 0%,rgba(86,143,216,.3),transparent 60%)}
+  .privacy{background:linear-gradient(150deg,#0a1730,var(--brand-800) 70%,var(--brand-700));border-radius:1.7rem;color:#fff;padding:3.5rem 2.2rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 26px 60px -26px rgba(19,34,65,.55)}
+  .privacy::before{content:'';position:absolute;inset:0;background:radial-gradient(540px 280px at 85% 0%,rgba(96,150,220,.35),transparent 60%)}
   .privacy>*{position:relative}
-  .privacy h2{font-size:clamp(1.5rem,3vw,2.1rem)}
-  .privacy p{color:#b6c6de;max-width:38rem;margin:.8rem auto 1.6rem}
+  .privacy h2{font-size:clamp(1.55rem,3.2vw,2.2rem)}
+  .privacy p{color:#b6c6de;max-width:39rem;margin:.9rem auto 1.8rem}
 
   /* ---------------- التذييل ---------------- */
-  footer{border-top:1px solid var(--line);background:#fff;padding-block:2.2rem}
+  footer{border-top:1px solid var(--line);background:#fff;padding-block:2.4rem}
   .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-  .foot-inner .muted{color:var(--muted);font-size:.85rem}
+  .foot-inner .muted{color:var(--muted);font-size:.86rem}
 </style>
 </head>
 <body>
@@ -136,7 +154,7 @@
     <a class="logo" href="#top"><span class="logo-badge">📓</span> دفتر الأستاذ الرقمي</a>
     <div class="nav-links">
       <a href="#المميزات">المميزات</a>
-      <a href="#الوحدات">الوحدات</a>
+      <a href="#الوحدات">الواجهة</a>
       <a href="#البداية">البداية</a>
       <a href="#الوثائق">الوثائق</a>
     </div>
@@ -150,8 +168,9 @@
     <span class="chip">🇩🇿 صُمم للأستاذ الجزائري — تعليم متوسط</span>
     <h1>دفترك الورقي نفسه…<br><span class="accent">لكن أسرع وأنظم</span></h1>
     <p class="sub">
-      تطبيق سطح مكتب يجمع الجدول الأسبوعي، الدفتر اليومي، دفتر التنقيط، التوزيع السنوي، الحضور والغياب،
-      وطباعة 11 وثيقة جاهزة — في برنامج واحد <b>يعمل دون إنترنت</b> وبياناتك محفوظة على جهازك فقط.
+      تطبيق سطح مكتب يجمع الجدول الأسبوعي، الدفتر اليومي، دفتر التنقيط، التوزيع السنوي،
+      الحضور والغياب، وطباعة 11 وثيقة جاهزة — في برنامج واحد <b>يعمل دون إنترنت</b>
+      وبياناتك محفوظة على جهازك فقط.
     </p>
     <div class="hero-cta">
       <a href="#تحميل" class="btn btn-primary btn-lg">⬇️ تحميل نسخة Windows</a>
@@ -184,25 +203,25 @@
       <h2 class="title-xl">كل ما يحتاجه الأستاذ في مكان واحد</h2>
       <p class="lead">لا مزيد من الدفاتر المتفرقة والأوراق المفقودة. أدخل المعلومة مرة واحدة، واستعملها في كل مكان: اليومي، التنقيط، التقارير، والطباعة.</p>
     </div>
-    <div class="grid grid-3" style="margin-top:2.8rem">
+    <div class="grid grid-3" style="margin-top:2.9rem">
       <div class="card"><span class="ico">🗓️</span><h3>جدول أسبوعي ملوّن</h3><p>كل قسم بلون مميز، حصص الساعتين مدمجة، والجدول كامل يظهر دون تمرير. اسحب الحصة لتغيير توقيتها.</p></div>
       <div class="card"><span class="ico">⏱️</span><h3>حصة في دقيقتين</h3><p>«فتح الحصة» يملأ كل شيء تلقائياً من جدولك. قالب مراحل جاهز، وحضور بضغطات قليلة، ثم انتقال للحصة التالية.</p></div>
       <div class="card"><span class="ico">✍️</span><h3>تنقيط بلا إعداد</h3><p>اكتب النقطة في خانة الفرض أو الاختبار مباشرة — يُنشأ التقييم تلقائياً والمعدلات تُحسب فوراً بصيغتك أنت.</p></div>
       <div class="card"><span class="ico">🗂️</span><h3>توزيع هرمي</h3><p>المادة ← الميدان ← الوحدة ← الدرس، مع تقدّم مرئي وتحديث تلقائي للحالة عند تسجيل الحصص.</p></div>
       <div class="card"><span class="ico">📥</span><h3>استيراد التلاميذ</h3><p>من Excel أو CSV: مطابقة أعمدة ذكية، كشف مكرر، وتوزيع تلقائي على الأقسام من عمود الفوج.</p></div>
-      <div class="card"><span class="ico">🌙</span><h3>وضع ليلي وكثافة مرنة</h3><p>واجهة عربية RTL أنيقة تنكبس للقراءة الليلية، وتكبير فوري للعرض أو للمشروع على البروجكتور.</p></div>
+      <div class="card"><span class="ico">🌙</span><h3>وضع ليلي وكثافة مرنة</h3><p>واجهة عربية أنيقة تنكبس للقراءة الليلية، وتكبير فوري للعرض أو للمشروع على البروجكتور.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ============================== الوحدات + لقطة ============================== -->
+<!-- ============================== الواجهة + لقطة ============================== -->
 <section class="section alt" id="الوحدات">
-  <div class="container grid grid-2" style="align-items:center;gap:3rem">
+  <div class="container grid grid-2" style="align-items:center;gap:3.2rem">
     <div>
       <span class="kicker">🖥️ داخل التطبيق</span>
       <h2 class="title-xl">الجدول الأسبوعي كما تحب أن تراه</h2>
       <p class="lead">ألوان ثابتة لكل قسم، بطاقات حصص واضحة، وحصص الساعتين تمتد بخانة واحدة أنيقة. كل شيء مكثّف ليظهر كاملاً دون شريط تمرير.</p>
-      <ul style="list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:.7rem;color:#334155;font-size:.95rem;font-weight:600">
+      <ul style="list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:.75rem;color:#334155;font-size:.96rem;font-weight:600">
         <li>✓ سحب وإفلات لتغيير التوقيت</li>
         <li>✓ زر أيمن: تعديل، نسخ، تكرار، حذف</li>
         <li>✓ كشف تلقائي للتعارض الزمني</li>
@@ -236,7 +255,7 @@
       <h2 class="title-xl">جاهز للعمل في 5 دقائق</h2>
       <p class="lead">معالج إعداد أول يأخذك خطوة بخطوة — ويمكن دائماً إكمال أي خطوة لاحقاً.</p>
     </div>
-    <div class="steps" style="max-width:46rem;margin:2.5rem auto 0">
+    <div class="steps" style="max-width:47rem;margin:2.7rem auto 0">
       <div class="step"><div><b>ثبّت التطبيق</b><p>ملف إعداد واحد لا يحتاج إنترنت ولا صلاحيات مدير. بياناتك في مجلد آمن لا يلمسه التحديث.</p></div></div>
       <div class="step"><div><b>أدخل هويتك</b><p>اسمك، مؤسستك، مادتك، والسنة الدراسية — تظهر تلقائياً على كل الوثائق المطبوعة.</p></div></div>
       <div class="step"><div><b>أضف أقسامك وتلاميذك</b><p>أقسام بضغطة، وتلاميذ بالاستيراد من ملف Excel المعتاد مع توزيع تلقائي على الأفواج.</p></div></div>
@@ -251,7 +270,7 @@
   <div class="container center">
     <span class="kicker">🖨️ مركز الطباعة</span>
     <h2 class="title-xl">11 وثيقة جاهزة — غلاف وترقيم A4</h2>
-    <p class="lead" style="margin-bottom:2.2rem">معاينة دقيقة قبل الطباعة، وطباعة صفحة واحدة أو مدى، وحفظ PDF بضغطة. زر الطباعة في كل شاشة يفتح الوثيقة الصحيحة بمعطياتها.</p>
+    <p class="lead" style="margin-bottom:2.3rem">معاينة دقيقة قبل الطباعة، وطباعة صفحة واحدة أو مدى، وحفظ PDF بضغطة. زر الطباعة في كل شاشة يفتح الوثيقة الصحيحة بمعطياتها.</p>
     <div class="docs">
       <span class="doc-pill">📅 الجدول الأسبوعي</span>
       <span class="doc-pill">📓 الدفتر اليومي</span>
@@ -277,7 +296,7 @@
         لا يوجد أي اتصال بالإنترنت في أي وظيفة من وظائف التطبيق. قاعدة البيانات محلية على جهازك،
         النسخ الاحتياطية في مجلدك أنت، ولا يوجد حساب ولا تسجيل ولا تتبع — أبداً.
       </p>
-      <a href="#تحميل" class="btn btn-primary btn-lg" style="background:#fff;color:var(--brand-900)">⬇️ حمّله الآن — مجاني</a>
+      <a href="#تحميل" class="btn btn-primary btn-lg" style="background:#fff;color:var(--brand-800)">⬇️ حمّله الآن — مجاني</a>
     </div>
   </div>
 </section>
@@ -287,9 +306,9 @@
   <div class="container center">
     <span class="kicker">⬇️ التحميل</span>
     <h2 class="title-xl">حمّل نسخة Windows</h2>
-    <p class="lead" style="margin-bottom:2rem">ملف إعداد واحد (~89 ميغابايت) يشمل كل شيء: البرنامج، الخطوط العربية، ودليل الاستخدام الكامل.</p>
+    <p class="lead" style="margin-bottom:2.1rem">ملف إعداد واحد (~89 ميغابايت) يشمل كل شيء: البرنامج، الخطوط العربية، ودليل الاستخدام الكامل.</p>
     <a class="btn btn-primary btn-lg" href="https://github.com/USER/REPO/releases/latest" id="download-btn">⬇️ دفتر الأستاذ الرقمي — setup.exe</a>
-    <p style="color:var(--muted);font-size:.85rem;margin-top:1.2rem">
+    <p style="color:var(--muted);font-size:.86rem;margin-top:1.3rem">
       الإصدار 1.0.0 — Windows 10/11 (64-bit) — بعد التثبيت اتبع شاشة الترحيب، ولأي استفسار افتح «دليل الاستخدام» من داخل البرنامج.
     </p>
   </div>
